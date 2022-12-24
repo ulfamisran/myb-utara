@@ -82,7 +82,8 @@
     <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
         <div class="modal-header">
-        <h5 class="modal-title" id="formModal">Tambahkan Surat Keluar</h5>
+        <h5 class="modal-title" id="formModal">Surat Keluar</h5>
+
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -90,7 +91,7 @@
         <div class="modal-body">
         <form class="" id="form_insert_suratkeluar" method="POST">
         @csrf
-
+                <input type="hidden" id="id_surat_keluar" />
                 <div class="form-group">
                     <label>No Kartu Keluarga</label>
                     <div class="input-group">
@@ -187,24 +188,23 @@
 
 
 
-                    <div class="form-group">
-                        <label>Isi Surat</label>
-                        <div class="input-group">
+                <div id="summernote_area">
+                    <div class="form-group col-md-12">
+                        <label for="" class="control-label">Isi Surat</label>
+                        <textarea name="isisurat" id="isisurat" class="ckeditor" >
 
-                            <textarea name="isisurat" id="isisurat" class="summernote" >
-
-                            </textarea>
-                        </div>
+                        </textarea>
                     </div>
-                    <div class="form-group">
-                        <label>Legalitas Surat</label>
-                        <div class="input-group">
+                </div>
 
-                            <textarea name="kakisurat" id="kakisurat" class="summernote" >
+                <div id="summernote_area">
+                    <div class="form-group col-md-12">
+                        <label for="" class="control-label">Legalitas</label>
+                        <textarea name="kakisurat" id="kakisurat" class="ckeditor" >
 
-                            </textarea>
-                        </div>
+                        </textarea>
                     </div>
+                </div>
 
                 </div>
 
@@ -234,8 +234,8 @@
     </div>
 </div>
 
-<!-- MODAL INSERT DATA SURAT KELUAR -->
-<div class="modal fade bd-example-modal-lg" id="modal_insert_suratkeluar" tabindex="-1" role="dialog" aria-labelledby="formModal"
+<!-- MODAL UPDATE DATA SURAT KELUAR -->
+<div class="modal fade bd-example-modal-lg" id="modal_update_suratkeluar" tabindex="-1" role="dialog" aria-labelledby="formModal"
     aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
@@ -246,9 +246,9 @@
         </button>
         </div>
         <div class="modal-body">
-        <form class="" id="form_insert_suratkeluar" method="POST">
+        <form class="" id="form_update_suratkeluar" method="POST">
         @csrf
-
+                <input type="hidden" id="id_draft_surat_keluar" />
                 <div class="form-group">
                     <label>No Kartu Keluarga</label>
                     <div class="input-group">
@@ -257,49 +257,34 @@
                             <i class="fas fa-address-book"></i>
                         </div>
                         </div>
-                        <input type="text" class="form-control" placeholder="Nomor Kartu Keluarga" id="nokk" required>
+                        <input type="text" class="form-control" placeholder="Nomor Kartu Keluarga" id="nokk1" required>
                     </div>
                 </div>
-                <button type="button" class="btn btn-primary" id="cek_nokk_btn">Cek No Kartu Keluarga</button><br><br>
+
                 <div class="form-group">
-                    <label>No NIK</label>
+                    <label>NIK Penduduk</label>
                     <div class="input-group">
                         <div class="input-group-prepend">
                         <div class="input-group-text">
-                            <i class="fas fa-address-card"></i>
+                            <i class="fas fa-address-book"></i>
                         </div>
                         </div>
-                        <select class="form-control" id="nonik">
-                            <option selected>Pilih NIK</option>
-                        </select>
+                        <input type="text" class="form-control" placeholder="NIK Penduduk" id="nonik1" required>
                     </div>
                 </div>
+
                 <div class="form-group">
-                    <label>Jenis Surat</label>
+                    <label>Nama Lengkap</label>
                     <div class="input-group">
                         <div class="input-group-prepend">
                         <div class="input-group-text">
-                            <i class="fas fa-envelope"></i>
+                            <i class="fas fa-address-book"></i>
                         </div>
                         </div>
-                        <select class="form-control" id="jenissurat">
-                            <option selected>Pilih Jenis Surat</option>
-                        </select>
+                        <input type="text" class="form-control" placeholder="Nama Lengkap" id="namalengkap1" required>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label>Format Surat</label>
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                        <div class="input-group-text">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        </div>
-                        <select class="form-control" id="formatsurat">
-                            <option selected>Pilih Format Surat</option>
-                        </select>
-                    </div>
-                </div>
+
                 <div class="form-group">
                     <label>Perihal Surat</label>
                     <div class="input-group">
@@ -308,7 +293,7 @@
                             <i class="fas fa-address-card"></i>
                         </div>
                         </div>
-                        <input type="text" class="form-control" placeholder="Perihal Surat" id="perihalsurat" required>
+                        <input type="text" class="form-control" placeholder="Perihal Surat" id="perihalsurat1" required>
                     </div>
                 </div>
                 <div class="form-group">
@@ -319,51 +304,27 @@
                             <i class="fas fa-check-circle"></i>
                         </div>
                         </div>
-                        <input type="text" class="form-control" placeholder="Nomor Surat" id="nosurat" required>
+                        <input type="text" class="form-control" placeholder="Nomor Surat" id="nosurat1" required>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label>Bentuk Pembuatan Surat</label>
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                        <div class="input-group-text">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        </div>
-                        <select class="form-control" id="buatsurat">
-                            <option value=""  selected>Pilih Bentuk Pembuatan Surat</option>
-                            <option value="upload"  >Upload File Surat</option>
-                            <option value="tulis" >Tulis Surat</option>
-                        </select>
-                    </div>
-                </div>
-
-
 
                 <!-- JIKA TULIS SURAT -->
-                <div id="area-tulis-surat">
+                <div id="summernote_area">
+                    <div class="form-group col-md-12">
+                        <label for="" class="control-label">Isi Surat</label>
+                        <textarea name="isisurat" id="isisurat1" class="ckeditor" >
 
-
-
-                    <div class="form-group">
-                        <label>Isi Surat</label>
-                        <div class="input-group">
-
-                            <textarea name="isisurat" id="isisurat" class="summernote" >
-
-                            </textarea>
-                        </div>
+                        </textarea>
                     </div>
-                    <div class="form-group">
-                        <label>Legalitas Surat</label>
-                        <div class="input-group">
+                </div>
 
-                            <textarea name="kakisurat" id="kakisurat" class="summernote" >
+                <div id="summernote_area">
+                    <div class="form-group col-md-12">
+                        <label for="" class="control-label">Legalitas</label>
+                        <textarea name="kakisurat" id="kakisurat1" class="ckeditor" >
 
-                            </textarea>
-                        </div>
+                        </textarea>
                     </div>
-
                 </div>
 
                 <!-- JIKA UPLOAD SURAT -->
@@ -376,25 +337,20 @@
                                 <i class="fas fa-file-upload"></i>
                             </div>
                             </div>
-                            <input type="file" class="form-control" placeholder="File Surat " id="filesurat" required>
+                            <input type="file" class="form-control" placeholder="File Surat " id="filesurat1" required>
                         </div>
                     </div>
                 </div>
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
-                    <button type="button" class="btn btn-info" id="simpan_suratkeluar_btn">Simpan Draft Surat</button>
-                    <button type="button" class="btn btn-success" id="approve_suratkeluar_btn">Simpan dan Approve</button>
+                    <button type="button" class="btn btn-info" id="ubah_suratkeluar_btn">Simpan Draft Surat</button>
                 </div>
         </form>
         </div>
     </div>
     </div>
 </div>
-
-
-
-
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 
@@ -411,7 +367,7 @@
             });
 
         var tabel_draftsuratkeluar= $('#tabel_draftsuratkeluar').DataTable({
-            // responsive: true,
+            responsive: true,
             processing : true,
             serverside : true,
             ajax:
@@ -546,7 +502,7 @@
                 success : function(data){
                     console.log(data);
                     $('#perihalsurat').val(data.perihal);
-                    $('#nosurat').val(data.kodenomorsurat+"/bulan/tahun");
+                    $('#nosurat').val(data.kodenomorsurat);
                 }
             });
         });
@@ -592,8 +548,8 @@
                     url :SITEURL+"/admin/getformatsurat/"+idformatsurat,
                     success : function(data){
                         console.log(data);
-                        $('#isisurat').summernote('code', data.isisurat);
-                        $('#kakisurat').summernote('code', data.kakisurat);
+                        CKEDITOR.instances['isisurat'].setData(data.isisurat);
+                        CKEDITOR.instances['kakisurat'].setData(data.kakisurat);
                     }
                 });
             }
@@ -603,6 +559,8 @@
             console.log("action button insert");
             e.preventDefault();
             var formData = new FormData();
+            var isisuratt = CKEDITOR.instances['isisurat'].getData();
+            var kakisuratt = CKEDITOR.instances['kakisurat'].getData();
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
@@ -615,8 +573,8 @@
             formData.append('perihalsurat', $('#perihalsurat').val());
 
             formData.append('nosurat', $('#nosurat').val());
-            formData.append('isisurat',$('#isisurat').summernote('code'));
-            formData.append('kakisurat',$('#kakisurat').summernote('code'));
+            formData.append('isisurat',isisuratt);
+            formData.append('kakisurat',kakisuratt);
             formData.append('filesurat', $('#filesurat').prop('files')[0]);
             formData.append('tanggalpembuatan', $('#tanggalpembuatan').val());
             console.log(formData);
@@ -640,8 +598,9 @@
                         swal ("Error!", "Kesalahan Proses Penambahan Data!", "error");
                     }
                     $('#form_insert_suratkeluar').trigger("reset");
-                        $('#tabel_draftsuratkeluar').DataTable().ajax.reload();
-                        $('#modal_insert_suratkeluar').modal('hide');
+                    $('#tabel_draftsuratkeluar').DataTable().ajax.reload();
+                    $('#tabel_suratkeluar').DataTable().ajax.reload();
+                    $('#modal_insert_suratkeluar').modal('hide');
                 }
             });
         });
@@ -650,51 +609,83 @@
             e.preventDefault();
             var idsuratkeluar = $(this).attr('data_id');
             console.log(idsuratkeluar);
+
             $.ajax({
                 type: "GET",
                 url : SITEURL + "/admin/getsuratkeluar/"+idsuratkeluar,
                 success: function (response) {
-                        console.log(response);
-                        $('#id_suratkeluar1').val(response.id);
-                        $('#tanggalmasuk1').val(response.tanggalmasuk);
-                        $('#perihal1').val(response.perihal);
-                        $('#pengirim1').val(response.pengirim);
-                        $('#modal_update_suratkeluar').modal('show');
+                var namalengkap;
+                $.ajax({
+                    type: "GET",
+                    url : SITEURL + "/admin/getpendudukbynik/"+response.nonik,
+                    success: function (response1) {
+                    console.log("hY");
+
+                    // console.log(response1);
+                    $('#namalengkap1').val(response1.namalengkap);
+                        // namalengkap=response1.namalengkap;
+                    }
+                });
+
+                // console.log(namalengkap);
+                    console.log(response);
+                    $('#id_draft_surat_keluar').val(response.id);
+                    $('#nokk1').val(response.nokk);
+                    $('#nonik1').val(response.nonik);
+
+                    $('#perihalsurat1').val(response.perihal);
+                    $('#nosurat1').val(response.nomorsurat);
+                    CKEDITOR.instances['isisurat1'].setData(response.isisurat);
+                    CKEDITOR.instances['kakisurat1'].setData(response.kakisurat);
+                    $('#modal_update_suratkeluar').modal('show');
                 }
             });
         });
 
         $('#ubah_suratkeluar_btn').click( function(e) {
-            console.log("action button ubah");
-
+            console.log("action button update");
             e.preventDefault();
-            var formData = new FormData();
+            var formData1 = new FormData();
+            var isisuratt = CKEDITOR.instances['isisurat1'].getData();
+            var kakisuratt = CKEDITOR.instances['kakisurat1'].getData();
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
                 }
             });
-            formData.append('id', $('#id_suratkeluar1').prop('files')[0]);
-            formData.append('filesurat', $('#filesurat1').prop('files')[0]);
-            formData.append('tanggalmasuk', $('#tanggalmasuk1').val());
-            formData.append('perihal', $('#perihal1').val());
-            formData.append('pengirim', $('#pengirim1').val());
-            console.log(formData);
+            formData1.append('id', $('#id_draft_surat_keluar').val())
+            formData1.append('nokk', $('#nokk1').val());
+            formData1.append('nonik', $('#nonik1').val());
+            formData1.append('jenissurat', $('#jenissurat1 option:selected').val());
+            formData1.append('formatsurat', $('#formatsurat1 option:selected').val());
+            formData1.append('perihalsurat', $('#perihalsurat1').val());
+
+            formData1.append('nosurat', $('#nosurat1').val());
+            formData1.append('isisurat',isisuratt);
+            formData1.append('kakisurat',kakisuratt);
+            formData1.append('filesurat', $('#filesurat1').prop('files')[0]);
+            console.log(formData1);
+
             $.ajax({
-                url:"{{route('update-suratkeluar')}}" ,
+                url:"{{route('update-suratkeluar')}}",
+                cache: false,
+			    contentType: false,
+			    processData: false,
                 method:'POST',
-                data:formData,
+                data:formData1,
                 dataType:'json',
                 success:function(result){
+                    console.log("ubah surat keluar")
                     console.log(result);
                     if(result.status=="success"){
-                        swal("Done!", result.suratkeluar+" Berhasil Diubah !", "success");
+                        swal("Done!", "Surat Keluar Berhasil Ditambahkan!", "success");
                     } else if (result.status=="failed"){
-                        swal("Error!", result.suratkeluar+" Gagal Diubah!", "error");
+                        swal("Error!", "Surat Keluar Gagal Ditambahkan!", "error");
                     } else{
-                        swal ("Error!", "Kesalahan Proses Pengubahan Data!", "error");
+                        swal ("Error!", "Kesalahan Proses Penambahan Data!", "error");
                     }
                     $('#form_update_suratkeluar').trigger("reset");
+                    $('#tabel_draftsuratkeluar').DataTable().ajax.reload();
                     $('#tabel_suratkeluar').DataTable().ajax.reload();
                     $('#modal_update_suratkeluar').modal('hide');
                 }
@@ -724,6 +715,41 @@
                             } else{
                                 swal ("Error!", "Kesalahan Proses Penghapusan Data!", "error");
                             }
+                            $('#tabel_draftsuratkeluar').DataTable().ajax.reload();
+                            $('#tabel_suratkeluar').DataTable().ajax.reload();
+                        }
+                    });
+                } else {
+                    e.dismiss;
+                }
+            });
+
+        });
+
+        $('body').on('click', '#approve_suratkeluar_btn', function(){
+            var idsuratkeluar = $(this).attr('data_id');
+            console.log(idsuratkeluar);
+            swal({
+                title :"Hapus Data Surat Keluar ?",
+                text :"Yakin Akan Menghapus Data Ini ?",
+                type : "warning",
+                showCancelButton: !0,
+                confirmButtonText:"Iya, Hapus Data!",
+                cancelButtonText:"Tidak, Batalkan!",
+                reverseButtons: !0
+            }).then(function(e){
+                if (e.value == true) {
+                    $.ajax({
+                        url : SITEURL + "/admin/hapussuratkeluar/"+idsuratkeluar,
+                        success: function (result){
+                            if(result.status=="success"){
+                                swal("Done!", "Data SuratKeluar Berhasil Dihapus!", "success");
+                            } else if (result.status=="failed"){
+                                swal("Error!", "Data SuratKeluar Gagal Dihapus", "error");
+                            } else{
+                                swal ("Error!", "Kesalahan Proses Penghapusan Data!", "error");
+                            }
+                            $('#tabel_draftsuratkeluar').DataTable().ajax.reload();
                             $('#tabel_suratkeluar').DataTable().ajax.reload();
                         }
                     });
