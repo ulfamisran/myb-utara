@@ -147,6 +147,10 @@ Route::get('/admin/getpermohonansurat/{id}', [PermohonanSuratController::class, 
 Route::any('/admin/tambahpermohonansurat', [PermohonanSuratController::class, 'tambahPermohonanSurat'])->name('tambah-permohonansurat');
 Route::post('/admin/updatepermohonansurat', [PermohonanSuratController::class, 'updatePermohonanSurat'])->name('update-permohonansurat');
 Route::get('/admin/hapuspermohonansurat/{id}', [PermohonanSuratController::class, 'hapusPermohonanSurat'])->name('hapus-permohonansurat');
+Route::get('/admin/terimapermohonansurat/{id}', [PermohonanSuratController::class, 'terimaPermohonanSurat'])->name('terima-permohonansurat');
+Route::get('/admin/tolakpermohonansurat/{id}', [PermohonanSuratController::class, 'tolakPermohonanSurat'])->name('tolak-permohonansurat');
+
+
 
 // PENGESAHAN / TTD
 Route::get('/admin/datatabelpengesahan', [PengesahanController::class, 'getTabelPengesahan'])->name('tabel-pengesahan');

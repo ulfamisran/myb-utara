@@ -15,47 +15,39 @@ class PermohonanSuratController extends Controller
 {
     /* DATATABLE PermohonanSurat*/
     public function getTabelPermohonanSurat(){
-        $data = DB::table('tb_permohonansurat')->join('tb_jenissurat', 'tb_permohonansurat.jenissurat', 'tb_jenissurat.id')
-        ->select('tb_permohonansurat.id as id','tb_permohonansurat.nikpemohon as nikpemohon', 'tb_permohonansurat.namapemohon as namapemohon', 'tb_jenissurat.jenissurat as jenissurat', 'tb_permohonansurat.keperluansurat as keperluansurat', 'tb_permohonansurat.statussurat as statussurat')
+        $data = DB::table('tb_permohonansurat')->join('tb_formatsurat', 'tb_permohonansurat.formatsurat', 'tb_formatsurat.id')
+        ->select('tb_permohonansurat.id as id','tb_permohonansurat.nikpemohon as nikpemohon', 'tb_permohonansurat.namapemohon as namapemohon', 'tb_formatsurat.perihal as perihal', 'tb_permohonansurat.keperluansurat as keperluansurat', 'tb_permohonansurat.statussurat as statussurat')
         ->Where('tb_permohonansurat.statussurat', '=', '1')
         ->get();
         return DataTables()->of($data)
         ->addColumn('statussurat', function($data){
             if ($data->statussurat==1) {
-                $link='<div class="btn-group"><a style=text-decoration:none; href="javascript:void(0);"
-                class="btn-xs  btn-danger">
-                </i>&nbsp&nbsp Permohonan Baru &nbsp&nbsp</a>';
+                $link='<div class=""><span style=text-decoration:none;"
+                class="btn-xs  btn-primary">
+                </i>&nbsp&nbsp Permohonan Baru &nbsp&nbsp</span>';
             }else if  ($data->statussurat==2){
-                $link = '<div class="btn-group"><a style=text-decoration:none; href="javascript:void(0);"
+                $link = '<div class="btn-group"><span style=text-decoration:none; href="javascript:void(0);"
                 id="" data_id="'.$data->id.'"class="btn-xs btn-warning">
-                </i>&nbsp&nbsp Permohonan  Ditolak &nbsp&nbsp</a> &nbsp&nbsp</div>';
+                </i>&nbsp&nbsp Permohonan  Ditolak &nbsp&nbsp</span> &nbsp&nbsp</div>';
             }else if ($data->statussurat==3){
-                $link='<div class="btn-group"><a style=text-decoration:none; href="javascript:void(0);"
+                $link='<div class="btn-group"><span style=text-decoration:none; href="javascript:void(0);"
                 class="btn-xs  btn-success">
-                </i>&nbsp&nbsp Permohonan Diterima &nbsp&nbsp</a>';
+                </i>&nbsp&nbsp Permohonan Diterima &nbsp&nbsp</span>';
             }else{
-                $link='<div class="btn-group"><a style=text-decoration:none; href="javascript:void(0);"
+                $link='<div class="btn-group"><span style=text-decoration:none; href="javascript:void(0);"
                 class="btn-xs  btn-success">
-                </i>&nbsp&nbsp - &nbsp&nbsp</a>';
+                </i>&nbsp&nbsp - &nbsp&nbsp</span>';
             }
             return $link;
         })
         ->addColumn('aksi', function($data){
             $link = '<div class="btn-group"><a style=text-decoration:none; href="javascript:void(0);"
-            id="update_permohonansurat_btn" data_id="'.$data->id.'"class="btn-xs btn-info">
+            id="terima_permohonansurat_btn" data_id="'.$data->id.'"class="btn-xs btn-success">
             &nbsp<i class="fa fa-check-square"></i>  Terima Permohonan&nbsp&nbsp  </a>';
-            $link .= '&nbsp&nbsp</div><br><br>';
+            $link .= '&nbsp&nbsp</div><br>';
             $link .=  '<div class="btn-group"><a style=text-decoration:none; href="javascript:void(0);"
-            id="delete_permohonansurat_btn" data_id="'.$data->id.'"class="btn-xs btn-warning">
-            &nbsp<i class="fa fa-times-circle"></i> Tolak Permohonan&nbsp&nbsp  </a>';
-            $link .= '&nbsp</div><br><br>';
-            $link .= '<div class="btn-group"><a style=text-decoration:none; href="javascript:void(0);"
-            id="update_permohonansurat_btn" data_id="'.$data->id.'"class="btn-xs btn-success">
-            &nbsp<i class="fas fa-edit"></i>  Update&nbsp&nbsp  </a>';
-            $link .= '&nbsp&nbsp</div>';
-            $link .=  '<div class="btn-group"><a style=text-decoration:none; href="javascript:void(0);"
-            id="delete_permohonansurat_btn" data_id="'.$data->id.'"class="btn-xs btn-danger">
-            &nbsp<i class="fas fa-trash"></i>  Delete&nbsp&nbsp  </a>';
+            id="tolak_permohonansurat_btn" data_id="'.$data->id.'"class="btn-xs btn-warning">
+            &nbsp<i class="fa fa-times-circle"></i> Tolak&nbsp  Permohonan&nbsp&nbsp&nbsp  </a>';
             $link .= '&nbsp</div>';
             return $link;
         })
@@ -65,16 +57,16 @@ class PermohonanSuratController extends Controller
     }
 
     public function getTabelRiwayatPermohonanSurat(){
-        $data = DB::table('tb_permohonansurat')->join('tb_jenissurat', 'tb_permohonansurat.jenissurat', 'tb_jenissurat.id')
-        ->select('tb_permohonansurat.id as id','tb_permohonansurat.nikpemohon as nikpemohon', 'tb_permohonansurat.namapemohon as namapemohon', 'tb_jenissurat.jenissurat as jenissurat', 'tb_permohonansurat.keperluansurat as keperluansurat', 'tb_permohonansurat.statussurat as statussurat')
+        $data = DB::table('tb_permohonansurat')
+        ->select('tb_permohonansurat.id as id','tb_permohonansurat.nikpemohon as nikpemohon', 'tb_permohonansurat.namapemohon as namapemohon', 'tb_permohonansurat.perihal as perihal', 'tb_permohonansurat.keperluansurat as keperluansurat', 'tb_permohonansurat.statussurat as statussurat')
         ->Where('tb_permohonansurat.statussurat', '<>', '1')
         ->get();
         return DataTables()->of($data)
         ->addColumn('statussurat', function($data){
             if ($data->statussurat==1) {
-                $link='<div class="btn-group"><a style=text-decoration:none; href="javascript:void(0);"
+                $link='<div class=""><span style=text-decoration:none;"
                 class="btn-xs  btn-danger">
-                </i>&nbsp&nbsp Permohonan Baru &nbsp&nbsp</a>';
+                </i>&nbsp Permohonan Baru &nbsp</span>';
             }else if  ($data->statussurat==2){
                 $link = '<div class="btn-group"><a style=text-decoration:none; href="javascript:void(0);"
                 id="" data_id="'.$data->id.'"class="btn-xs btn-warning">
@@ -110,17 +102,24 @@ class PermohonanSuratController extends Controller
 
     /* GET A PermohonanSurat BY ID */
     public function getPermohonanSuratById($id){
-        return PermohonanSurat::where('id', $id)->first();
+        $data = DB::table('tb_permohonansurat')->join('tb_penduduk', 'tb_permohonansurat.nikpemohon', 'tb_penduduk.nonik')
+        ->select('tb_permohonansurat.*', 'tb_penduduk.namalengkap as namalengkap')
+        ->Where('tb_permohonansurat.id', '=', $id)
+        ->first();
+
+        return $data;
     }
 
 
     /* INSERT PermohonanSurat */
     public function tambahPermohonanSurat(Request $req){
         $PermohonanSurat = new PermohonanSurat;
-
+        $PermohonanSurat->nokkpemohon = $req->nokkpemohon;
         $PermohonanSurat->nikpemohon = $req->nikpemohon;
         $PermohonanSurat->namapemohon = $req->namapemohon;
         $PermohonanSurat->jenissurat = $req->jenissurat;
+        $PermohonanSurat->formatsurat = $req->formatsurat;
+        $PermohonanSurat->perihal = $req->perihal;
         $PermohonanSurat->keperluansurat = $req->keperluansurat;
         $PermohonanSurat->statussurat = 1;
 
@@ -139,14 +138,52 @@ class PermohonanSuratController extends Controller
 
     /* UPDATE PermohonanSurat */
     public function updatePermohonanSurat(Request $req){
-        $PermohonanSurat = PermohonanSurat::where
 
-
-        ('id', $req->id)->first();
-        $PermohonanSurat->nikpemohon = $req->nikpemohon;
-        $PermohonanSurat->namapemohon = $req->namapemohon;
+        $PermohonanSurat = PermohonanSurat::where('id', $req->id)->first();
         $PermohonanSurat->jenissurat = $req->jenissurat;
+        $PermohonanSurat->formatsurat = $req->formatsurat;
+        $PermohonanSurat->perihal = $req->perihal;
         $PermohonanSurat->keperluansurat = $req->keperluansurat;
+        $PermohonanSurat->statussurat = 1;
+
+        if( $PermohonanSurat->save()){
+            return response()->json([
+                'status' => 'success',
+                'penduduk' =>  $PermohonanSurat->namapemohon
+            ]);
+        }else {
+            return response()->json([
+                'status'=>'failed',
+                'penduduk'=> $PermohonanSurat->namapemohon
+            ]);
+        }
+    }
+
+    /* TERIMA PERMINTAAN PermohonanSurat */
+    public function terimaPermohonanSurat($id){
+
+        $PermohonanSurat = PermohonanSurat::where('id', $id)->first();
+        $PermohonanSurat->statussurat = 3;
+
+        if( $PermohonanSurat->save()){
+            return response()->json([
+                'status' => 'success',
+                'penduduk' =>  $PermohonanSurat->namapemohon
+            ]);
+        }else {
+            return response()->json([
+                'status'=>'failed',
+                'penduduk'=> $PermohonanSurat->namapemohon
+            ]);
+        }
+    }
+
+
+    /* TOLAK PERMINTAAN PermohonanSurat */
+    public function tolakPermohonanSurat($id){
+
+        $PermohonanSurat = PermohonanSurat::where('id', $id)->first();
+        $PermohonanSurat->statussurat = 2;
 
         if( $PermohonanSurat->save()){
             return response()->json([

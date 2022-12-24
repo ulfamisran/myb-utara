@@ -2,7 +2,7 @@
 
 @section('content')
          <!-- Main Content -->
-     
+
 <section class="section">
   <div class="section-body">
     <div class="row">
@@ -24,74 +24,74 @@
                   </tr>
                 </thead>
                 <tbody>
-               
+
                 </tbody>
               </table>
             </div>
           </div>
         </div>
       </div>
-      </div> 
-    </div> 
+      </div>
+    </div>
   </div>
 </section>
 
 <div class="modal fade" id="modal_insert_pendidikan" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-  <div class="modal-dialog" role="document">
-      <div class="modal-content">
-          <div class="modal-header">
-              <h5 class="modal-title" id="form_pendidikan_modal">Tambah Pendidikan</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="false">&times;</span></button>
-          </div>
-          <div class="modal-body">
-              <form id="form_insert_pendidikan" method="POST">
-              @csrf
-                  <div class="form-group">
-                      <label for="jenis_pendidikan" class="control-label">Pendidikan :</label>
-                      <input type="text" name="name" id="pendidikan" class="form-control" required="">
-                  </div>
-                  <div class="modal-footer">
-                      <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
-                      <button type="button" class="btn btn-success" id="simpan_pendidikan_btn">Tambah</button>
-                  </div>
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="form_pendidikan_modal">Tambah Pendidikan</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="false">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <form id="form_insert_pendidikan" method="POST">
+                @csrf
+                    <div class="form-group">
+                        <label for="jenis_pendidikan" class="control-label">Pendidikan :</label>
+                        <input type="text" name="name" id="pendidikan" class="form-control" required="">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+                        <button type="button" class="btn btn-success" id="simpan_pendidikan_btn">Tambah</button>
+                    </div>
 
-              </form>
-          </div>
-      </div>
-  </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 
 <div class="modal fade" id="modal_update_pendidikan" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-  <div class="modal-dialog" role="document">
-      <div class="modal-content">
-          <div class="modal-header">
-              <h5 class="modal-title" id="form_pendidikan_modal">Form Ubah Data Pendidikan</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="false">&times;</span></button>
-          </div>
-          <div class="modal-body">
-              <form id="form_update_pendidikan" method="POST">
-              @csrf
-                  <input type="hidden" id="id_pendidikan" />
-                  <div class="form-group">
-                      <label for="jenis_pendidikan" class="control-label">Pendidikan :</label>
-                      <input type="text" name="name" id="pendidikan1" class="form-control" required="">
-                  </div>
-                  <div class="modal-footer">
-                      <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
-                      <button type="button" class="btn btn-success" id="ubah_pendidikan_btn">Ubah</button>
-                  </div>
-              </form>
-          </div>
-      </div>
-  </div>
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="form_pendidikan_modal">Form Ubah Data Pendidikan</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="false">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <form id="form_update_pendidikan" method="POST">
+                @csrf
+                    <input type="hidden" id="id_pendidikan" />
+                    <div class="form-group">
+                        <label for="jenis_pendidikan" class="control-label">Pendidikan :</label>
+                        <input type="text" name="name" id="pendidikan1" class="form-control" required="">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+                        <button type="button" class="btn btn-success" id="ubah_pendidikan_btn">Ubah</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 
-       
+
 
  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 
     <script type="text/javascript">
-    
+
     var SITEURL = '{{URL::to('')}}';
     $(function(){
         $.ajaxSetup({
@@ -112,7 +112,7 @@
             [
                 {
                     "data": 'DT_RowIndex',
-                    orderable: false, 
+                    orderable: false,
                     searchable: false
 
                 },{
@@ -126,17 +126,17 @@
             ],
         });
 
-     
+
 
         $('#tambah_btn').click(function (e) {
             $('.modal-backdrop').remove();
             $('#form_insert_pendidikan').trigger("reset");
             $('#modal_insert_pendidikan').modal('show');
-        });      
+        });
 
         $('#simpan_pendidikan_btn').click( function(e) {
             console.log("action button insert");
-            
+
             e.preventDefault();
             var formdata ={
                 pendidikan:$('#pendidikan').val()
@@ -171,18 +171,18 @@
             $.ajax({
                 type: "GET",
                 url : SITEURL + "/admin/getpendidikan/"+idpendidikan,
-                success: function (response) {                  
+                success: function (response) {
                         console.log(response);
                         $('#id_pendidikan').val(response.id),
                         $('#pendidikan1').val(response.pendidikan);
                         $('#modal_update_pendidikan').modal('show');
                 }
-            });           
+            });
         });
 
         $('#ubah_pendidikan_btn').click( function(e) {
             console.log("action button ubah");
-            
+
             e.preventDefault();
             var formdata ={
                 id:$('#id_pendidikan').val(),
@@ -224,22 +224,22 @@
                 if (e.value == true) {
                     $.ajax({
                         url : SITEURL + "/admin/hapuspendidikan/"+idpendidikan,
-                         success: function (result){ 
-                             if(result.status=="success"){                      
+                         success: function (result){
+                             if(result.status=="success"){
                                 swal("Done!", "Data Pendidikan Berhasil Dihapus!", "success");
                             } else if (result.status=="failed"){
                                 swal("Error!", "Data Pendidikan Gagal Dihapus", "error");
                             } else{
                                 swal ("Error!", "Kesalahan Proses Penghapusan Data!", "error");
                             }
-                            $('#tabel_pendidikan').DataTable().ajax.reload();             
+                            $('#tabel_pendidikan').DataTable().ajax.reload();
                         }
-                    });  
+                    });
                 } else {
                     e.dismiss;
                 }
             });
-            
+
         });
 
     });

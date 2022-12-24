@@ -12,9 +12,12 @@ class PermohonanSurat extends Model
     protected $primaryKey = "id";
     protected $fillable = array(
         'id',
+        'nokkpemohon',
         'nikpemohon',
         'namapemohon',
         'jenissurat',
+        'formatsurat',
+        'perihal',
         'keperluansurat',
         'statussurat',
         'create_at',
