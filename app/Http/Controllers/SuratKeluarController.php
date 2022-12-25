@@ -207,6 +207,8 @@ class SuratKeluarController extends Controller
 
     }
 
+
+
     /* UPDATE SuratKeluar */
     public function updateSuratKeluar(Request $req){
         $filesurat = $req->file('filesurat');

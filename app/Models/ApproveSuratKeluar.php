@@ -12,11 +12,11 @@ class ApproveSuratKeluar extends Model
     protected $primaryKey = "id";
     protected $fillable = array(
         'id',
-        'id_suratkeluar',
-        'nomorsurat',
+        'id_surat_keluar',
+        'no_surat_keluar',
         'bulan',
         'tahun',
-        'tanggal_approve',
+        'tgl_approve',
     );
     public $timestamps = false;
 }

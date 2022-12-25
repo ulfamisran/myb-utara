@@ -15,6 +15,8 @@ use App\Http\Controllers\PermohonanSuratController;
 use App\Http\Controllers\PengesahanController;
 use App\Http\Controllers\SuratKeluarController;
 use App\Http\Controllers\FormatPengesahanController;
+use App\Http\Controllers\ApproveSuratKeluarController;
+
 
 
 
@@ -176,3 +178,7 @@ Route::get('/admin/dataformatpengesahan/{id}', [FormatPengesahanController::clas
 Route::any('/admin/insertformatpengesahan', [FormatPengesahanController::class, 'insertFormatPengesahan'])->name('insert-formatpengesahan');
 Route::get('/admin/deleteformatpengesahan/{id}', [FormatPengesahanController::class, 'deleteFormatPengesahan'])->name('delete-formatpengesahan');
 Route::any('/admin/updateformatpengesahan', [FormatPengesahanController::class, 'updateFormatPengesahan'])->name('update-formatpengesahan');
+
+// APPROVE SURAT KELUAR
+Route::get('/admin/gettabelapprovesuratkeluar', [ApproveSuratKeluarController::class, 'getTabelApproveSuratKeluar'])->name('get-tabel-approve-suratkeluar');
+Route::post('/admin/approvesuratkeluar', [ApproveSuratKeluarController::class, 'approveSuratKeluar'])->name('approve-suratkeluar');
