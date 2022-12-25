@@ -18,8 +18,8 @@ class SuratKeluarController extends Controller
     /* DATATABLE SuratKeluar*/
 
 
-     /* DATATABLE SuratKeluar*/
-     public function getTabelSuratKeluar(){
+    /* DATATABLE SuratKeluar*/
+    public function getTabelSuratKeluar(){
         $data = DB::table('tb_suratkeluar')->join('tb_penduduk', 'tb_suratkeluar.nonik', '=', 'tb_penduduk.nonik')
         ->select('tb_suratkeluar.*', 'tb_penduduk.nonik as nonik', 'tb_penduduk.namalengkap as namalengkap')
         ->where('tb_suratkeluar.approve', '=', '0')
@@ -31,11 +31,24 @@ class SuratKeluarController extends Controller
             return $link;
         })
         ->addColumn('file', function($data){
-            $link = '<div class="btn-group"><a style=text-decoration:none; href="/suratkeluar/'.$data->file.'" target="_blank"
-             data_id="'.$data->id.'"class="btn-xs btn-primary">
-             &nbsp<i class="fas fa-search"></i>  Lihat  File&nbsp&nbsp  </a>';
-            $link .= '&nbsp&nbsp</div>';
-            return $link;
+            if($data->file != null){
+                $link = '<div class="btn-group"><a style=text-decoration:none; href="/suratkeluar/'.$data->file.'" target="_blank"
+                data_id="'.$data->id.'"class="btn-xs btn-primary">
+                &nbsp<i class="fas fa-search"></i>  Lihat  File&nbsp&nbsp  </a>';
+                $link .= '&nbsp&nbsp</div>';
+                return $link;
+            }else {
+                $link = '<div class="btn-group"><a style=text-decoration:none; href="/admin/lihatsuratkeluar/'.$data->id.'" target="_blank"
+                data_id="'.$data->id.'"class="btn-xs btn-primary">
+                &nbsp<i class="fas fa-search"></i>  Lihat  File&nbsp&nbsp  </a>';
+                $link .= '&nbsp&nbsp</div>';
+                return $link;
+                // $link = '<div class="btn-group"><a style=text-decoration:none;
+                // id="lihat_suratapprove_btn" data_id="'.$data->idapprove.'"class="btn-xs btn-primary">
+                // &nbsp<i class="fas fa-search"></i>  Lihat  File&nbsp&nbsp  </a>';
+                // $link .= '&nbsp&nbsp</div>';
+                // return $link;
+            }
         })
         ->addColumn('status', function($data){
             if($data->approve == 0){
@@ -48,7 +61,7 @@ class SuratKeluarController extends Controller
                 id="" data_id="'.$data->id.'"class="btn-xs btn-success">
                 &nbsp<i class="fas fa-edit"></i>  Surat Terapprove&nbsp&nbsp  </span>';
                 $link .= '&nbsp&nbsp</div>';
-           }
+            }
 
             return $link;
         })
@@ -206,6 +219,8 @@ class SuratKeluarController extends Controller
         }
 
     }
+
+
 
     /* UPDATE SuratKeluar */
     public function updateSuratKeluar(Request $req){

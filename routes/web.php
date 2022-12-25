@@ -15,6 +15,10 @@ use App\Http\Controllers\PermohonanSuratController;
 use App\Http\Controllers\PengesahanController;
 use App\Http\Controllers\SuratKeluarController;
 use App\Http\Controllers\FormatPengesahanController;
+use App\Http\Controllers\ApproveSuratKeluarController;
+use App\Http\Controllers\SuratPdfController;
+
+
 
 
 
@@ -176,3 +180,11 @@ Route::get('/admin/dataformatpengesahan/{id}', [FormatPengesahanController::clas
 Route::any('/admin/insertformatpengesahan', [FormatPengesahanController::class, 'insertFormatPengesahan'])->name('insert-formatpengesahan');
 Route::get('/admin/deleteformatpengesahan/{id}', [FormatPengesahanController::class, 'deleteFormatPengesahan'])->name('delete-formatpengesahan');
 Route::any('/admin/updateformatpengesahan', [FormatPengesahanController::class, 'updateFormatPengesahan'])->name('update-formatpengesahan');
+
+// APPROVE SURAT KELUAR
+Route::get('/admin/gettabelapprovesuratkeluar', [ApproveSuratKeluarController::class, 'getTabelApproveSuratKeluar'])->name('get-tabel-approve-suratkeluar');
+Route::post('/admin/approvesuratkeluar', [ApproveSuratKeluarController::class, 'approveSuratKeluar'])->name('approve-suratkeluar');
+
+// LIHAT SURAT PDF
+Route::get('/admin/lihatsuratapprove/{id}', [SuratPdfController::class, 'lihatSuratApprove'])->name('get-lihat-surat-approve-pdf');
+Route::get('/admin/lihatsuratkeluar/{id}', [SuratPdfController::class, 'lihatSuratKeluar'])->name('get-lihat-surat-keluar-pdf');

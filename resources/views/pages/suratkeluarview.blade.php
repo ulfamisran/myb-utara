@@ -38,6 +38,8 @@
         </div>
     </div>
 
+
+
     <div class="section-body">
         <div class="row">
             <div class="col-12">
@@ -49,7 +51,7 @@
                             <div class="table-responsive">
                                 <!-- <button  class="btn btn-primary" data-toggle="modal" data-backdrop="false"    id="tambah_btn" ><i class="fas fa-plus-circle"></i> &nbspTambah baru</button> -->
                                 <br></br>
-                                <table class="table table-striped" id="tabel_suratkeluar">
+                                <table class="table table-striped" id="tabel_approve_suratkeluar">
                                     <thead>
                                     <tr>
                                         <th class="text-center">No</th>
@@ -352,6 +354,32 @@
     </div>
 </div>
 
+<!-- MODAL APPROVE SURAT KELUAR -->
+<div class="modal fade" id="modal_approve_surat" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="form_approve_suratkeluar_modal">Form Approve Surat Keluar</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="false">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <form id="form_approve_suratkeluar" method="POST">
+                @csrf
+                    <input type="hidden" id="id_surat_keluar" />
+                    <div class="form-group">
+                        <label for="jenis_approve_suratkeluar" class="control-label">Jumlah Surat Yang Dibuat :</label>
+                        <input type="text" name="name" id="jumlahsuratkeluar" class="form-control" required="">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+                        <button type="button" class="btn btn-success" id="approve_btn">Approve</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 
     <script type="text/javascript">
@@ -408,13 +436,13 @@
             ],
         });
 
-        var tabel_suratkeluar= $('#tabel_suratkeluar').DataTable({
+        var tabel_suratkeluar= $('#tabel_approve_suratkeluar').DataTable({
             responsive: true,
             processing : true,
             serverside : true,
             ajax:
             {
-            url : SITEURL + "/admin/gettabelsuratkeluar/",
+            url : SITEURL + "/admin/gettabelapprovesuratkeluar",
             },
             columns:
             [
@@ -424,12 +452,12 @@
                     searchable: false
 
                 },{
-                    data:'nomorsurat',
-                    name:'nomorsurat',
+                    data:'nosurat',
+                    name:'nosurat',
                     orderable:false
                 },{
-                    data:'nomorsurat',
-                    name:'nomorsurat',
+                    data:'tanggalapprove',
+                    name:'tanggalapprove',
                     orderable:false
                 },{
                     data:'perihal',
@@ -554,6 +582,7 @@
                 });
             }
         });
+
 
         $('#simpan_suratkeluar_btn').click( function(e) {
             console.log("action button insert");
@@ -692,6 +721,7 @@
             });
         });
 
+
         $('body').on('click', '#delete_suratkeluar_btn', function(){
             var idsuratkeluar = $(this).attr('data_id');
             console.log(idsuratkeluar);
@@ -726,38 +756,76 @@
 
         });
 
-        $('body').on('click', '#approve_suratkeluar_btn', function(){
+        // $('body').on('click', '#approve_suratkeluar_btn', function(){
+        //     var idsuratkeluar = $(this).attr('data_id');
+        //     console.log(idsuratkeluar);
+        //     swal({
+        //         title :"Approve Surat Keluar ?",
+        //         text :"Yakin Akan Approve Data Ini ?",
+        //         type : "warning",
+        //         showCancelButton: !0,
+        //         confirmButtonText:"Iya, Hapus Data!",
+        //         cancelButtonText:"Tidak, Batalkan!",
+        //         reverseButtons: !0
+        //     }).then(function(e){
+        //         if (e.value == true) {
+        //             $.ajax({
+        //                 url : SITEURL + "/admin/hapussuratkeluar/"+idsuratkeluar,
+        //                 success: function (result){
+        //                     if(result.status=="success"){
+        //                         swal("Done!", "Data SuratKeluar Berhasil Dihapus!", "success");
+        //                     } else if (result.status=="failed"){
+        //                         swal("Error!", "Data SuratKeluar Gagal Dihapus", "error");
+        //                     } else{
+        //                         swal ("Error!", "Kesalahan Proses Penghapusan Data!", "error");
+        //                     }
+        //                     $('#tabel_draftsuratkeluar').DataTable().ajax.reload();
+        //                     $('#tabel_suratkeluar').DataTable().ajax.reload();
+        //                 }
+        //             });
+        //         } else {
+        //             e.dismiss;
+        //         }
+        //     });
+
+        // });
+
+        $('body').on('click', '#approve_suratkeluar_btn', function(e){
             var idsuratkeluar = $(this).attr('data_id');
-            console.log(idsuratkeluar);
-            swal({
-                title :"Hapus Data Surat Keluar ?",
-                text :"Yakin Akan Menghapus Data Ini ?",
-                type : "warning",
-                showCancelButton: !0,
-                confirmButtonText:"Iya, Hapus Data!",
-                cancelButtonText:"Tidak, Batalkan!",
-                reverseButtons: !0
-            }).then(function(e){
-                if (e.value == true) {
-                    $.ajax({
-                        url : SITEURL + "/admin/hapussuratkeluar/"+idsuratkeluar,
-                        success: function (result){
-                            if(result.status=="success"){
-                                swal("Done!", "Data SuratKeluar Berhasil Dihapus!", "success");
-                            } else if (result.status=="failed"){
-                                swal("Error!", "Data SuratKeluar Gagal Dihapus", "error");
-                            } else{
-                                swal ("Error!", "Kesalahan Proses Penghapusan Data!", "error");
-                            }
-                            $('#tabel_draftsuratkeluar').DataTable().ajax.reload();
-                            $('#tabel_suratkeluar').DataTable().ajax.reload();
-                        }
-                    });
-                } else {
-                    e.dismiss;
+            $('#id_surat_keluar').val(idsuratkeluar);
+            $('#modal_approve_surat').modal('show');
+        });
+
+        $('#approve_btn').click( function(e) {
+            console.log("action button ubah");
+            var id_suratkeluar = $(this).attr('data_id');
+
+            e.preventDefault();
+            var formdata ={
+                idsuratkeluar :$('#id_surat_keluar').val(),
+                jumlahsurat:$('#jumlahsuratkeluar').val()
+            }
+            console.log(formdata);
+            $.ajax({
+                url: SITEURL + "/admin/approvesuratkeluar" ,
+                method:'POST',
+                data:formdata,
+                dataType:'json',
+                success:function(result){
+                    console.log(result);
+                    if(result.status=="success"){
+                        swal("Done!", "Surat Keluar Terapprove !", "success");
+                    } else if (result.status=="failed"){
+                        swal("Error!", " Gagal Approve Surat!", "error");
+                    } else{
+                        swal ("Error!", "Kesalahan Proses Pengubahan Data!", "error");
+                    }
+                    $('#form_approve_suratkeluar').trigger("reset");
+                    $('#tabel_approve_suratkeluar').DataTable().ajax.reload();
+                    $('#tabel_draftsuratkeluar').DataTable().ajax.reload();
+                    $('#modal_approve_surat').modal('hide');
                 }
             });
-
         });
 
     });
