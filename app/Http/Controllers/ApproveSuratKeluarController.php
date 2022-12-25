@@ -23,7 +23,7 @@ class ApproveSuratKeluarController extends Controller
         $data = DB::table('tb_approve_surat_keluar')->join('tb_suratkeluar', 'tb_approve_surat_keluar.id_surat_keluar', '=', 'tb_suratkeluar.id')
         ->join('tb_penduduk', 'tb_suratkeluar.nonik', '=', 'tb_penduduk.nonik')
         ->select('tb_approve_surat_keluar.id as idapprove','tb_approve_surat_keluar.no_surat_keluar as nosurat', 'tb_approve_surat_keluar.tgl_approve as tanggalapprove', 'tb_suratkeluar.perihal','tb_suratkeluar.file',
-        'tb_suratkeluar.id as id_surat_keluar', 'tb_suratkeluar.nokk', 'tb_suratkeluar.nonik', 'tb_penduduk.namalengkap')
+        'tb_suratkeluar.id as id_surat_keluar', 'tb_suratkeluar.nokk', 'tb_suratkeluar.nonik', 'tb_penduduk.namalengkap', 'tb_suratkeluar.file')
         ->get();
 
         return DataTables()->of($data)
@@ -32,11 +32,20 @@ class ApproveSuratKeluarController extends Controller
             return $link;
         })
         ->addColumn('file', function($data){
-            $link = '<div class="btn-group"><a style=text-decoration:none; href="/suratkeluar/'.$data->file.'" target="_blank"
-            data_id="'.$data->idapprove.'"class="btn-xs btn-primary">
-            &nbsp<i class="fas fa-search"></i>  Lihat  File&nbsp&nbsp  </a>';
-            $link .= '&nbsp&nbsp</div>';
-            return $link;
+            if($data->file != null){
+                $link = '<div class="btn-group"><a style=text-decoration:none; href="/suratkeluar/'.$data->file.'" target="_blank"
+                data_id="'.$data->idapprove.'"class="btn-xs btn-primary">
+                &nbsp<i class="fas fa-search"></i>  Lihat  File&nbsp&nbsp  </a>';
+                $link .= '&nbsp&nbsp</div>';
+                return $link;
+            }else {
+                $link = '<div class="btn-group"><a style=text-decoration:none; href="/admin/lihatsuratapprove/'.$data->idapprove.'" target="_blank"
+                data_id="'.$data->idapprove.'"class="btn-xs btn-primary">
+                &nbsp<i class="fas fa-search"></i>  Lihat  File&nbsp&nbsp  </a>';
+                $link .= '&nbsp&nbsp</div>';
+                return $link;
+            }
+
         })
         ->addColumn('aksi', function($data){
                 $link =  '<div class="btn-group"><a style=text-decoration:none; href="javascript:void(0);"
@@ -56,30 +65,32 @@ class ApproveSuratKeluarController extends Controller
 
         $SuratKeluar = SuratKeluar::where('id', '=', $req->idsuratkeluar)->first();
         // $kodesurat = $SuratKeluar->nomorsurat;
-        $date = Carbon::now();
-        $formatedDate = $date->format('Y-m-d');
+
+        $tgl = date("d");
         $bulan = date("m");
         $tahun = date("Y");
 
         $jumlahsuratkeluar = HitungSuratKeluar::where('id','=', '1')->first();
         $nosurat = $jumlahsuratkeluar->jumlah_surat+1;
-        $bulanromawi = "";
+        $bulanromawi = ""; $namabulan="";
         switch ($bulan) {
-            case 1 : $bulanromawi = "I"; break;
-            case 2 : $bulanromawi = "II"; break;
-            case 3 : $bulanromawi = "IIi"; break;
-            case 4 : $bulanromawi = "IV"; break;
-            case 5 : $bulanromawi = "V"; break;
-            case 6 : $bulanromawi = "VI"; break;
-            case 7 : $bulanromawi = "VII"; break;
-            case 8 : $bulanromawi = "VIII"; break;
-            case 9 : $bulanromawi = "IX"; break;
-            case 10 : $bulanromawi = "X"; break;
-            case 11 : $bulanromawi = "XI"; break;
-            case 12 : $bulanromawi = "XII"; break;
+            case 1 : $bulanromawi = "I"; $namabulan="Januari"; break;
+            case 2 : $bulanromawi = "II"; $namabulan="Februari"; break;
+            case 3 : $bulanromawi = "III"; $namabulan="Maret"; break;
+            case 4 : $bulanromawi = "IV"; $namabulan="April"; break;
+            case 5 : $bulanromawi = "V"; $namabulan="Mei"; break;
+            case 6 : $bulanromawi = "VI"; $namabulan="Juni"; break;
+            case 7 : $bulanromawi = "VII"; $namabulan="Juli"; break;
+            case 8 : $bulanromawi = "VIII"; $namabulan="Agustus"; break;
+            case 9 : $bulanromawi = "IX"; $namabulan="September"; break;
+            case 10 : $bulanromawi = "X"; $namabulan="Oktober"; break;
+            case 11 : $bulanromawi = "XI"; $namabulan="November"; break;
+            case 12 : $bulanromawi = "XII"; $namabulan="Desember"; break;
 
         }
         $no_surat_keluar ="";
+        $tanggal_pengesahan = $tgl." ".$namabulan." ".$tahun;
+
 
         for($i=0; $i<$req->jumlahsurat; $i++){
             $no_surat_keluar = $nosurat."/".$SuratKeluar->nomorsurat."/".$bulanromawi."/".$tahun;
@@ -88,7 +99,7 @@ class ApproveSuratKeluarController extends Controller
             $Approve->no_surat_keluar = $no_surat_keluar;
             $Approve->bulan = $bulanromawi;
             $Approve->tahun = $tahun;
-            $Approve->tgl_approve = date("Y-m-d");
+            $Approve->tgl_approve = $tanggal_pengesahan;
 
             $Approve->save();
 
