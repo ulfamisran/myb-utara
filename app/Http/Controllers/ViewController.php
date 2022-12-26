@@ -7,7 +7,10 @@ use App\Models\Agama;
 
 class ViewController extends Controller
 {
-    
+    public function dashboardView(){
+        return view ('pages.dashboard');
+    }
+
     public function agamaView(){
         return view ('pages.agamaview');
     }
@@ -41,7 +44,7 @@ class ViewController extends Controller
         return view ('pages.kkview');
     }
 
-    public function detailKkView($nokk){     
+    public function detailKkView($nokk){
         return view ('pages.detailkkview', compact('nokk'));
     }
 

@@ -17,7 +17,7 @@
         <ul class="sidebar-menu">
             <li class="menu-header">Main</li>
             <li class="dropdown">
-                <a href="#" class="nav-link"><i data-feather="monitor"></i><span>Dashboard</span></a>
+                <a href="/admin/dashboardview" class="nav-link"><i data-feather="monitor"></i><span>Dashboard</span></a>
             </li>
             <li class="dropdown">
                 <a href="#" class="nav-link"><i data-feather="home"></i><span>Info Desa</span></a>
@@ -31,7 +31,7 @@
                     <li><a class="nav-link" href="/admin/statuskeluargaview">Data Status Keluarga</a></li>
                 </ul>
             </li>
-           
+
             <li class="menu-header">Master Persuratan & Perijinan</li>
             <li class="dropdown">
                 <a href="/admin/jenissuratview" class="nav-link "><i data-feather="file-text"></i><span>Master Jenis Surat</span></a>
@@ -52,8 +52,8 @@
             <li class="dropdown">
                 <a href="/admin/suratmasukview" class="nav-link "><i data-feather="mail"></i><span>Surat Masuk</span></a>
             </li>
-            
-           
+
+
             <li class="menu-header">Kependudukan</li>
             <li class="dropdown">
                 <a href="/admin/pendudukview" class="nav-link "><i data-feather="database"></i><span>Data Penduduk</span></a>

@@ -42,6 +42,8 @@ Route::get('/', function () {
 });
 
 //VIEW
+
+Route::get('/admin/dashboardview', [ViewController::class, 'dashboardView'])->name('dashboard-view');
 Route::get('/admin/agamaview', [ViewController::class, 'agamaView'])->name('agama-view');
 Route::get('/admin/pekerjaanview', [ViewController::class, 'pekerjaanView'])->name('pekerjaan-view');
 Route::get('/admin/pendidikanview', [ViewController::class, 'pendidikanView'])->name('pendidikan-view');
