@@ -102,15 +102,15 @@
 							</ul>
 							<div class="tab-content" id="myTabContent">
 							<div class="tab-pane fade show active" id="flight" role="tabpanel" aria-labelledby="flight-tab">
-								<form class="form-wrap">
-									<input type="text" class="form-control" name="name" placeholder="Masukkan No Kartu Keluarga " onfocus="this.placeholder = ''" onblur="this.placeholder = 'From '">
-									<a href="#" class="primary-btn text-uppercase">Cek Kartu Keluarga</a>
+								<form class="form-wrap" id="form_cek_kk">
+									<input type="text" class="form-control" id="nokk" name="name" placeholder="Masukkan No Kartu Keluarga " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Masukkan No Kartu Keluarga '">
+                                    <button type="button" class="btn-sm primary-btn text-uppercase" id="cek_nokk_btn">Cek No Kartu Keluarga</button><br><br>
 								</form>
 							</div>
 							<div class="tab-pane fade" id="hotel" role="tabpanel" aria-labelledby="hotel-tab">
-								<form class="form-wrap">
-									<input type="text" class="form-control" name="name" placeholder="Masukkan NIK " onfocus="this.placeholder = ''" onblur="this.placeholder = 'From '">
-									<a href="#" class="primary-btn text-uppercase">Cek NIK </a>
+								<form class="form-wrap" id="form_cek_nik">
+                                    <input type="text" class="form-control" id="nonik" name="name" placeholder="Masukkan Nomor KTP / NIK " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Masukkan No KTP / NIK '">
+                                    <button type="button" class="btn-sm primary-btn text-uppercase" id="cek_nonik_btn">Cek NIK Penduduk</button><br><br>
 								</form>
 							</div>
 
@@ -226,3 +226,59 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 			<script src="{{url('landingpage/js/main.js')}}"></script>
 		</body>
 	</html>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.all.min.js"></script>
+
+<script type="text/javascript">
+
+    var SITEURL = '{{URL::to('')}}';
+    $(function(){
+        $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+
+        $('#cek_nokk_btn').click(function (e) {
+            e.preventDefault();
+            var nokk = $('#nokk').val()
+            console.log(nokk);
+            $.ajax({
+                type: "GET",
+                url : SITEURL + "/admin/getdetailkkbykk/"+nokk,
+                success: function (response) {
+                    console.log(response)
+                        if(response.length<=0){
+                            swal("Error!", " NOMOR KARTU KELUARGA TIDAK TERDAFTAR.", "error");
+                        }else{
+                            swal("Done!", "NOMOR KARTU KELUARGA TERDAFTAR!", "success");
+                        }
+                        $('#form_cek_kk').trigger("reset");
+                }
+            });
+        });
+
+        $('#cek_nonik_btn').click(function (e) {
+            e.preventDefault();
+            var nonik = $('#nonik').val()
+            console.log(nonik);
+            $.ajax({
+                type: "GET",
+                url : SITEURL + "/admin/getpendudukbynik/"+nonik,
+                success: function (response) {
+                        if(!response){
+                            swal("Error!", " PENDUDUK TIDAK TERDAFTAR.", "error");
+                        }else{
+                            swal("Done!", "PENDUDUK TERDAFTAR!", "success");
+                        }
+                        $('#form_cek_nik').trigger("reset");
+                }
+            });
+        });
+
+
+    });
+</script>
+

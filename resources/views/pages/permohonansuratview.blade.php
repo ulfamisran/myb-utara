@@ -115,43 +115,6 @@
                         </div>
                     </div>
                     <br>
-                    <!-- <div class="form-group">
-                        <label>Jenis Surat</label>
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                            <div class="input-group-text">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            </div>
-                            <select class="form-control" id="jenissurat">
-                                <option selected>---Pilih Jenis Surat---</option>
-                            </select>
-                        </div>
-                    </div> -->
-                    <!-- <div class="form-group">
-                        <label>Format Surat</label>
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                            <div class="input-group-text">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            </div>
-                            <select class="form-control" id="formatsurat">
-                                <option selected>Pilih Format Surat</option>
-                            </select>
-                        </div>
-                    </div> -->
-                    <!-- <div class="form-group">
-                        <label>Perihal Surat</label>
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                            <div class="input-group-text">
-                                <i class="fas fa-address-card"></i>
-                            </div>
-                            </div>
-                            <input type="text" class="form-control" placeholder="Perihal Surat" id="perihalsurat" required>
-                        </div>
-                    </div> -->
                     <div class="form-group">
                         <label>Keperluan Surat</label>
                         <div class="input-group">
@@ -347,7 +310,7 @@
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 
-    <script type="text/javascript">
+<script type="text/javascript">
 
     var SITEURL = '{{URL::to('')}}';
     $(function(){
@@ -784,5 +747,5 @@
 
 
     });
-  </script>
+</script>
 @endsection
