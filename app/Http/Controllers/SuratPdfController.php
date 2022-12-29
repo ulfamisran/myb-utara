@@ -25,7 +25,7 @@ class SuratPdfController extends Controller
 
         $surat = DB::table('tb_suratkeluar')
         ->join('tb_formatsurat', 'tb_suratkeluar.idformatsurat', '=', 'tb_formatsurat.id')
-        ->select('tb_suratkeluar.*','tb_formatsurat.pengesahan as pengesahan')
+        ->select('tb_suratkeluar.*','tb_formatsurat.pengesahan as pengesahan', 'tb_formatsurat.kodenomorsurat as nomorsurat' )
         ->where('tb_suratkeluar.id', '=', $id)
         ->first();
 
@@ -197,7 +197,7 @@ class SuratPdfController extends Controller
 
         $PDF->Output('surat.pdf');
 
-   }
+    }
 
 
     /* LIHAT Surat Approve*/

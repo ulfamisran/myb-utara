@@ -21,7 +21,7 @@
                                     <th class="text-center" width="5%">No</th>
                                     <th class="text-center" width="10%">NIK Pemohon</th>
                                     <th class="text-center" width="15%">Nama Pemohon</th>
-                                    <!-- <th class="text-center" width="15%">Perihal</th> -->
+                                    <th class="text-center" width="15%">Perihal</th>
                                     <th class="text-center" width="25%">Keperluan Surat</th>
                                     <th class="text-center" width="15%">Status Surat</th>
                                     <th class="text-center" width="15%">Aksi</th>
@@ -53,7 +53,7 @@
                                     <th class="text-center" width="5%">No</th>
                                     <th>NIK Pemohon</th>
                                     <th>Nama Pemohon</th>
-                                    <!-- <th>Jenis Surat</th> -->
+                                    <th>Jenis Surat</th>
                                     <th>Keperluan Surat</th>
                                     <th>Status Surat</th>
                                     <th>Aksi</th>
@@ -115,7 +115,7 @@
                         </div>
                     </div>
                     <br>
-                    <!-- <div class="form-group">
+                    <div class="form-group">
                         <label>Jenis Surat</label>
                         <div class="input-group">
                             <div class="input-group-prepend">
@@ -127,8 +127,8 @@
                                 <option selected>---Pilih Jenis Surat---</option>
                             </select>
                         </div>
-                    </div> -->
-                    <!-- <div class="form-group">
+                    </div>
+                    <div class="form-group">
                         <label>Format Surat</label>
                         <div class="input-group">
                             <div class="input-group-prepend">
@@ -140,8 +140,8 @@
                                 <option selected>Pilih Format Surat</option>
                             </select>
                         </div>
-                    </div> -->
-                    <!-- <div class="form-group">
+                    </div>
+                    <div class="form-group">
                         <label>Perihal Surat</label>
                         <div class="input-group">
                             <div class="input-group-prepend">
@@ -151,7 +151,7 @@
                             </div>
                             <input type="text" class="form-control" placeholder="Perihal Surat" id="perihalsurat" required>
                         </div>
-                    </div> -->
+                    </div>
                     <div class="form-group">
                         <label>Keperluan Surat</label>
                         <div class="input-group">
@@ -327,7 +327,7 @@
                                 <i class="fas fa-file-upload"></i>
                             </div>
                             </div>
-                            <input type="file" class="form-control" placeholder="File Surat " id="filesurat" required>
+                            <input type="file" class="form-control" placeholder="File Surat " id="filesurat1" required>
                         </div>
                     </div>
                 </div>
@@ -381,6 +381,10 @@
                     name:'namapemohon',
                     orderable:false
                 },{
+                    data:'perihal',
+                    name:'perihal',
+                    orderable:false
+                },{
                     data:'keperluansurat',
                     name:'keperluansurar',
                     orderable:false
@@ -416,6 +420,10 @@
                 },{
                     data:'namapemohon',
                     name:'namapemohon',
+                    orderable:false
+                },{
+                    data:'perihal',
+                    name:'perihal',
                     orderable:false
                 },{
                     data:'keperluansurat',
@@ -530,7 +538,7 @@
                 success : function(data){
                     console.log(data);
                     $('#perihalsurat1').val(data.perihal);
-                    $('#nosurat1').val(data.kodenomorsurat)
+                    $('#nosurat').val(data.kodenomorsurat)
                 }
             });
         });
@@ -573,9 +581,9 @@
                 nokkpemohon:$('#nokkpemohon').val(),
                 nikpemohon:$('#nikpemohon option:selected').attr('data'),
                 namapemohon:$('#nikpemohon option:selected').val(),
-                // jenissurat:$('#jenissurat option:selected').val(),
-                // formatsurat:$('#formatsurat option:selected').val(),
-                // perihal:$('#perihalsurat').val(),
+                jenissurat:$('#jenissurat option:selected').val(),
+                formatsurat:$('#formatsurat option:selected').val(),
+                perihal:$('#perihalsurat').val(),
                 keperluansurat:$('#keperluansurat').val()
             }
             console.log(formdata);
@@ -617,9 +625,15 @@
                         $("#nokk1").prop('disabled', true);
                         $("#nonik1").prop('disabled', true);
                         $("#namalengkap1").prop('disabled', true);
+
                         $('#nokk1').val(response.nokkpemohon),
                         $('#nonik1').val(response.nikpemohon),
                         $('#namalengkap1').val(response.namalengkap),
+                        // $('#jenissurat1 option[value='+response.jenissurat+']').prop('selected', true);
+                        // $('#formatsurat1 option[value='+response.formatsurat+']').prop('selected', true);
+                        // $('#perihalsurat1').val(response.perihal),
+                        // $('#nosurat1').val(response.,
+
                         $('#modal_insert_suratkeluar').modal('show');
                 }
             });

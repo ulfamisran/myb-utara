@@ -75,40 +75,42 @@
 				<div class="overlay overlay-bg"></div>
 				<div class="container">
 					<div class="row fullscreen align-items-center justify-content-between">
-						<div class="col-lg-6 col-md-6 banner-left">
-						<br><br><br>
-							<h6 class="text-white">Sistem Permohonan Pembuatan Surat</h6>
-							<h1 class="text-white">PERSURATAN DESA BUNTU MONDONG</h1>
-							<p class="text-white">
-								Pengurusan Surat Desa Buntu Mondong Lebih Mudah dan Efisien.
-							</p>
-							<p class="text-white">
-								Pastikan No. Penduduk dan No. Kartu Keluarga Terdaftar pada Sistem.
-							</p><br>
-							<a href="#" class="primary-btn text-uppercase">CEK SURAT SAYA</a>
-						</div>
-						<div class="col-lg-6 col-md-6 banner-right">
-						<br><br><br><br><br>
+						<div class="col-lg-12 col-md-6 banner-right">
+
 							<ul class="nav nav-tabs" id="myTab" role="tablist">
 							<li class="nav-item">
-								<a class="nav-link active" id="flight-tab" data-toggle="tab" href="#flight" role="tab" aria-controls="flight" aria-selected="true">Cek No.KK</a>
+								<a class="nav-link active" id="flight-tab" data-toggle="tab" href="#flight" role="tab" aria-controls="flight" aria-selected="true">Permohonan Surat</a>
 							</li>
-							<li class="nav-item">
+							<!-- <li class="nav-item">
 								<a class="nav-link" id="hotel-tab" data-toggle="tab" href="#hotel" role="tab" aria-controls="hotel" aria-selected="false">Cek NIK</a>
-							</li>
+							</li> -->
 							<!-- <li class="nav-item">
 								<a class="nav-link" id="holiday-tab" data-toggle="tab" href="#holiday" role="tab" aria-controls="holiday" aria-selected="false">PERMOHONAN SURAT</a>
 							</li> -->
 							</ul>
 							<div class="tab-content" id="myTabContent">
 							<div class="tab-pane fade show active" id="flight" role="tabpanel" aria-labelledby="flight-tab">
-								<form class="form-wrap">
-									<input type="text" class="form-control" name="name" placeholder="Masukkan No Kartu Keluarga " onfocus="this.placeholder = ''" onblur="this.placeholder = 'From '">
-									<a href="#" class="primary-btn text-uppercase">Cek Kartu Keluarga</a>
+                                <form class="form-wrap">
+									<input type="text" class="form-control" name="name" placeholder="Masukkan No KK " onfocus="this.placeholder = ''" onblur="this.placeholder = 'From '">
+									<a href="#" class="primary-btn text-uppercase">Cek Nomor Kartu Keluarga </a> <br><br>
+									<input type="text" class="form-control" name="name" placeholder="Masukkan No NIK " onfocus="this.placeholder = ''" onblur="this.placeholder = 'From '">
+                                    <select class="form-control" id="jenissurat">
+                                        <option selected>--- Pilih Jenis Surat ---</option>
+                                    </select>
+                                    <select class="form-control" id="jenissurat">
+                                        <option selected>--- Pilih Perihal Surat ---</option>
+                                    </select>
+									<input type="text" class="form-control" name="name" placeholder="Masukkan  " onfocus="this.placeholder = ''" onblur="this.placeholder = 'From '">
+									<input type="text" class="form-control" name="name" placeholder="Masukkan NIK " onfocus="this.placeholder = ''" onblur="this.placeholder = 'From '">
+									<a href="#" class="primary-btn text-uppercase">Cek NIK </a>
 								</form>
 							</div>
 							<div class="tab-pane fade" id="hotel" role="tabpanel" aria-labelledby="hotel-tab">
 								<form class="form-wrap">
+									<input type="text" class="form-control" name="name" placeholder="Masukkan No KK " onfocus="this.placeholder = ''" onblur="this.placeholder = 'From '">
+									<a href="#" class="primary-btn text-uppercase">Cek NIK </a>
+									<input type="text" class="form-control" name="name" placeholder="Masukkan No NIK " onfocus="this.placeholder = ''" onblur="this.placeholder = 'From '">
+									<input type="text" class="form-control" name="name" placeholder="Masukkan  " onfocus="this.placeholder = ''" onblur="this.placeholder = 'From '">
 									<input type="text" class="form-control" name="name" placeholder="Masukkan NIK " onfocus="this.placeholder = ''" onblur="this.placeholder = 'From '">
 									<a href="#" class="primary-btn text-uppercase">Cek NIK </a>
 								</form>

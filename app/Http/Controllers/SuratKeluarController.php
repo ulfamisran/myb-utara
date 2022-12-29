@@ -43,11 +43,6 @@ class SuratKeluarController extends Controller
                 &nbsp<i class="fas fa-search"></i>  Lihat  File&nbsp&nbsp  </a>';
                 $link .= '&nbsp&nbsp</div>';
                 return $link;
-                // $link = '<div class="btn-group"><a style=text-decoration:none;
-                // id="lihat_suratapprove_btn" data_id="'.$data->idapprove.'"class="btn-xs btn-primary">
-                // &nbsp<i class="fas fa-search"></i>  Lihat  File&nbsp&nbsp  </a>';
-                // $link .= '&nbsp&nbsp</div>';
-                // return $link;
             }
         })
         ->addColumn('status', function($data){

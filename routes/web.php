@@ -41,6 +41,10 @@ Route::get('/', function () {
     return view('landingpage.index');
 });
 
+Route::get('/permohonansurat', function () {
+    return view('landingpage.permohonansurat');
+});
+
 //VIEW
 
 Route::get('/admin/dashboardview', [ViewController::class, 'dashboardView'])->name('dashboard-view');

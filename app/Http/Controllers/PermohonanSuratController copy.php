@@ -15,8 +15,8 @@ class PermohonanSuratController extends Controller
 {
     /* DATATABLE PermohonanSurat*/
     public function getTabelPermohonanSurat(){
-        $data = DB::table('tb_permohonansurat')
-        ->select('tb_permohonansurat.id as id','tb_permohonansurat.nikpemohon as nikpemohon', 'tb_permohonansurat.namapemohon as namapemohon','tb_permohonansurat.keperluansurat as keperluansurat', 'tb_permohonansurat.statussurat as statussurat')
+        $data = DB::table('tb_permohonansurat')->join('tb_formatsurat', 'tb_permohonansurat.formatsurat', 'tb_formatsurat.id')
+        ->select('tb_permohonansurat.id as id','tb_permohonansurat.nikpemohon as nikpemohon', 'tb_permohonansurat.namapemohon as namapemohon', 'tb_formatsurat.perihal as perihal', 'tb_permohonansurat.keperluansurat as keperluansurat', 'tb_permohonansurat.statussurat as statussurat')
         ->Where('tb_permohonansurat.statussurat', '=', '1')
         ->get();
         return DataTables()->of($data)
@@ -117,7 +117,9 @@ class PermohonanSuratController extends Controller
         $PermohonanSurat->nokkpemohon = $req->nokkpemohon;
         $PermohonanSurat->nikpemohon = $req->nikpemohon;
         $PermohonanSurat->namapemohon = $req->namapemohon;
-
+        $PermohonanSurat->jenissurat = $req->jenissurat;
+        $PermohonanSurat->formatsurat = $req->formatsurat;
+        $PermohonanSurat->perihal = $req->perihal;
         $PermohonanSurat->keperluansurat = $req->keperluansurat;
         $PermohonanSurat->statussurat = 1;
 
