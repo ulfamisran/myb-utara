@@ -17,7 +17,7 @@
 
             @include('includes.navbar')
 
-            @include('includes.sidebar')
+            @include('includes.sidebaruser')
 
             <!-- Main Content -->
             <div class="main-content">

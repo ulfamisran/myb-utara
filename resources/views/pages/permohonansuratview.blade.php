@@ -234,7 +234,7 @@
                             <i class="fas fa-check-circle"></i>
                         </div>
                         </div>
-                        <input type="text" class="form-control" placeholder="Nomor Surat" id="nosurat1" required>
+                        <input type="text" class="form-control" placeholder="Nomor Surat" id="nosurat" required>
                     </div>
                 </div>
                 <div class="form-group">
@@ -493,7 +493,7 @@
                 success : function(data){
                     console.log(data);
                     $('#perihalsurat1').val(data.perihal);
-                    $('#nosurat1').val(data.kodenomorsurat)
+                    $('#nosurat').val(data.kodenomorsurat)
                 }
             });
         });

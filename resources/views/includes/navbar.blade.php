@@ -21,7 +21,7 @@
             </li>
         </ul>
     </div>
-    <ul class="navbar-nav navbar-right">
+    <!-- <ul class="navbar-nav navbar-right">
         <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown"
                 class="nav-link nav-link-lg message-toggle"><i data-feather="mail"></i>
                 <span class="badge headerBadge1">
@@ -158,5 +158,5 @@
                 </a>
             </div>
         </li>
-    </ul>
+    </ul> -->
 </nav>

@@ -64,7 +64,7 @@
 
             <li class="menu-header">User</li>
             <li class="dropdown">
-                <a href="#" class="nav-link "><i data-feather="user"></i><span>Data User</span></a>
+                <a href="/admin/userview" class="nav-link "><i data-feather="user"></i><span>Data User</span></a>
             </li>
             <li class="dropdown">
                 <a href="#" class="nav-link "><i data-feather="repeat"></i><span>Ubah Password</span></a>

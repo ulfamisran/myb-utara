@@ -153,7 +153,7 @@
                                     <th class="text-center" width="5%">No</th>
                                     <th class="text-center" width="10%">NIK Pemohon</th>
                                     <th class="text-center" width="15%">Nama Pemohon</th>
-                                    <th class="text-center" width="15%">Perihal</th>
+                                    <!-- <th class="text-center" width="15%">Perihal</th> -->
                                     <th class="text-center" width="25%">Keperluan Surat</th>
                                     <th class="text-center" width="15%">Status Surat</th>
                                 </tr>
@@ -201,10 +201,6 @@ $(function(){
             },{
                 data:'namapemohon',
                 name:'namapemohon',
-                orderable:false
-            },{
-                data:'perihal',
-                name:'perihal',
                 orderable:false
             },{
                 data:'keperluansurat',

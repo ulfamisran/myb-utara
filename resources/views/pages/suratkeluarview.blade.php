@@ -600,13 +600,13 @@
             formData.append('jenissurat', $('#jenissurat option:selected').val());
             formData.append('formatsurat', $('#formatsurat option:selected').val());
             formData.append('perihalsurat', $('#perihalsurat').val());
-
             formData.append('nosurat', $('#nosurat').val());
             formData.append('isisurat',isisuratt);
             formData.append('kakisurat',kakisuratt);
             formData.append('filesurat', $('#filesurat').prop('files')[0]);
             formData.append('tanggalpembuatan', $('#tanggalpembuatan').val());
-            console.log(formData);
+            console.log("tes");
+            console.log( $('#nosurat').val());
 
             $.ajax({
                 url:"{{route('tambah-suratkeluar')}}",

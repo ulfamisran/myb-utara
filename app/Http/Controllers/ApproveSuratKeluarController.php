@@ -93,7 +93,7 @@ class ApproveSuratKeluarController extends Controller
 
 
         for($i=0; $i<$req->jumlahsurat; $i++){
-            $no_surat_keluar = $nosurat."/".$SuratKeluar->nomorsurat."/".$bulanromawi."/".$tahun;
+            $no_surat_keluar = "00".$nosurat."/".$SuratKeluar->nomorsurat."/".$bulanromawi."/".$tahun;
             $Approve = new ApproveSuratKeluar;
             $Approve->id_surat_keluar = $req->idsuratkeluar;
             $Approve->no_surat_keluar = $no_surat_keluar;

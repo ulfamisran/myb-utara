@@ -64,5 +64,9 @@ class ViewController extends Controller
         return view ('pages.pengesahanview');
     }
 
+    public function userView(){
+        return view ('pages.user');
+    }
+
 
 }

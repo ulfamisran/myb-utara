@@ -94,7 +94,6 @@ class PermohonanSuratController extends Controller
         ->make(true);
     }
 
-
     /* GET ALL PermohonanSurat */
     public function getAllPermohonanSurat(){
         return PermohonanSurat::all();
