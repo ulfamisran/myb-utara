@@ -24,6 +24,7 @@ class ApproveSuratKeluarController extends Controller
         ->join('tb_penduduk', 'tb_suratkeluar.nonik', '=', 'tb_penduduk.nonik')
         ->select('tb_approve_surat_keluar.id as idapprove','tb_approve_surat_keluar.no_surat_keluar as nosurat', 'tb_approve_surat_keluar.tgl_approve as tanggalapprove', 'tb_suratkeluar.perihal','tb_suratkeluar.file',
         'tb_suratkeluar.id as id_surat_keluar', 'tb_suratkeluar.nokk', 'tb_suratkeluar.nonik', 'tb_penduduk.namalengkap', 'tb_suratkeluar.file')
+        ->orderBy('idapprove', 'DESC')
         ->get();
 
         return DataTables()->of($data)

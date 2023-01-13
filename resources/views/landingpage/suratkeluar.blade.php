@@ -31,96 +31,108 @@
 			<link rel="stylesheet" href="{{url('landingpage/css/main.css')}}">
 		</head>
 		<body>
-			<header id="header">
-				<div class="header-top">
-					<div class="container">
-					<div class="row align-items-center">
-						<div class="col-lg-6 col-sm-6 col-6 header-top-left">
-							<!-- <ul>
-								<li><a href="#">Visit Us</a></li>
-								<li><a href="#">Buy Tickets</a></li>
-							</ul> -->
-						</div>
-						<div class="col-lg-6 col-sm-6 col-6 header-top-right">
-							<div class="header-social">
-								<a href="#"><i class="fa fa-facebook"></i></a>
-								<a href="#"><i class="fa fa-twitter"></i></a>
-								<a href="#"><i class="fa fa-dribbble"></i></a>
-								<a href="#"><i class="fa fa-behance"></i></a>
-							</div>
-						</div>
-					</div>
-					</div>
-				</div>
-				<div class="container main-menu">
-					<div class="row align-items-center justify-content-between d-flex">
-						<div id="logo">
-							<!-- <a href="index.html"><img src="landingpage/logo.png"  height="50" alt="" title="" /></a> -->
-							<b><a style="font-size:18px;" class="text-white" href="index.html"><img src="gambarlogo/logo_enrekang.png"  height="50" alt="" title="" /> Desa Buntu Mondong</a></b>
-						</div>
-						<nav id="nav-menu-container">
-                            <ul class="nav-menu">
-                                <li><a href="/">Home</a></li>
-                                <li><a href="/permohonansurat">Permohonan Surat</a></li>
-                                <li><a href="/ceksurat">Cek Surat</a></li>
-                                <li><a href="contact.html">Contact</a></li>
-							</ul>
-						</nav><!-- #nav-menu-container -->
-					</div>
-				</div>
-			</header><!-- #header -->
 
-			<!-- start banner Area -->
-			<section class="banner-area relative">
-				<div class="overlay overlay-bg"></div>
+            <!-- Start destinations Area -->
+            <section class="destinations-area section-gap">
 				<div class="container">
-					<div class="row fullscreen align-items-center justify-content-between">
-						<div class="col-lg-12 col-md-6 banner-right">
-                            <br><br><br><br>
-							<h1 class="text-white">PERSURATAN DESA BUNTU MONDONG</h1><br><br>
+		            <div class="row d-flex justify-content-center">
+		                <div class="menu-content pb-10 col-lg-8">
+		                    <div class="title text-center">
+                                <h1 class="mb-10">Surat Keluar</h1>
+                                <h2 class="mb-10">Desa Buntu Mondong</h2>
+		                        <h5>{{$Nik}} / {{$NamaLengkap}}</h5>
+		                    </div>
+		                </div>
+		            </div>
+					<div class="row">
+                    @forelse ($SuratKeluar as $sk)
+                    <div class="col-lg-4">
+                        <div class="single-destinations">
+                            <div class="thumb">
+                                <img src="/suratkeluar.png" alt="">
+                            </div>
+                            <div class="details">
+                                <h4>{{$sk->perihal}}</h4>
+                                <p>
+                                    Desa Buntu Mondong
+                                </p>
+                                <ul class="package-list">
+                                    <li class="d-flex justify-content-between align-items-center">
+                                        <b><span>No Surat</span></b>
+                                        <span>{{$sk->no_surat_keluar}}</span>
+                                    </li>
+                                    <li class="d-flex justify-content-between align-items-center">
+                                        <b><span>Perihal</span></b>
+                                        <span>{{$sk->perihal}}</span>
+                                    </li>
+                                    <li class="d-flex justify-content-between align-items-center">
+                                        <b><span>Tanggal Surat</span></b>
+                                        <span>{{$sk->tgl_approve}}</span>
+                                    </li>
+                                    <li class="d-flex justify-content-between align-items-center">
+                                        <b><span>Isi Surat</span></b>
+                                        @if($sk->file == null)
+                                        <a href="/lihatsuratapprove/{{$sk->idapprove}}" target="_blank" class="price-btn">Lihar Surat</a>
+                                        @else
+                                        <a href="/suratkeluar/{{$sk->file}}"  target="_blank" class="price-btn">Lihar Surat</a>
+                                        @endif
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+					</div>
+                    @endforeach
 
-                        <h4 class="text-white ">PERHATIAN !!! </h4><h5 class="text-white">Untuk melakukan pengajuan permohonan surat, pastikan No.KK dan NIK telah terdaftar.</h5><br>
 
-							<ul class="nav nav-tabs" id="myTab" role="tablist">
-							<li class="nav-item">
-								<a class="nav-link active" id="flight-tab" data-toggle="tab" href="#flight" role="tab" aria-controls="flight" aria-selected="true">Permohonan Surat</a>
-							</li>
-							<!-- <li class="nav-item">
-								<a class="nav-link" id="hotel-tab" data-toggle="tab" href="#hotel" role="tab" aria-controls="hotel" aria-selected="false">Cek NIK</a>
-							</li> -->
-							<!-- <li class="nav-item">
-								<a class="nav-link" id="holiday-tab" data-toggle="tab" href="#holiday" role="tab" aria-controls="holiday" aria-selected="false">PERMOHONAN SURAT</a>
-							</li> -->
-							</ul>
-							<div class="tab-content" id="myTabContent">
-							<div class="tab-pane fade show active" id="flight" role="tabpanel" aria-labelledby="flight-tab">
-                                <form class="form-wrap"  id="form_insert_permohonansurat" method="POST">
-									<input type="text" class="form-control" id="nokkpemohon" name="name" placeholder="Masukkan No KK " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Masukkan No KK'">
-                                    <button type="button" class="btn-sm primary-btn text-uppercase" id="cek_nokk_btn">Cek No Kartu Keluarga</button><br><br>
-                                    <select class="form-control" id="nikpemohon">
-                                        <option selected>--- Pilih NIK dan Nama ---</option>
-                                    </select>
-									<input type="text" class="form-control" id="keperluansurat" name="name" placeholder="Keperluan Surat " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Keperluan Surat '">
-                                    <button type="button" class="btn-sm primary-btn text-uppercase" id="simpan_permohonansurat_btn">Ajukan Permohonan Surat</button><br><br>
-								</form>
-							</div>
-							<!-- <div class="tab-pane fade" id="hotel" role="tabpanel" aria-labelledby="hotel-tab">
-								<form class="form-wrap">
-									<input type="text" class="form-control" name="name" placeholder="Masukkan No KK " onfocus="this.placeholder = ''" onblur="this.placeholder = 'From '">
-									<a href="#" class="primary-btn text-uppercase">Cek NIK </a>
-									<input type="text" class="form-control" name="name" placeholder="Masukkan No NIK " onfocus="this.placeholder = ''" onblur="this.placeholder = 'From '">
-									<input type="text" class="form-control" name="name" placeholder="Masukkan  " onfocus="this.placeholder = ''" onblur="this.placeholder = 'From '">
-									<input type="text" class="form-control" name="name" placeholder="Masukkan NIK " onfocus="this.placeholder = ''" onblur="this.placeholder = 'From '">
-									<a href="#" class="primary-btn text-uppercase">Cek NIK </a>
-								</form>
-							</div> -->
-
-							</div>
-						</div>
 					</div>
 				</div>
 			</section>
-			<!-- End banner Area -->
+			<!-- End destinations Area -->
+
+            <!-- Start destinations Area -->
+            <section class="destinations-area section-gap">
+				<div class="container">
+		            <div class="row d-flex justify-content-center">
+		                <div class="menu-content pb-10 col-lg-8">
+		                    <div class="title text-center">
+		                        <h1 class="mb-10">Permohonan Surat</h1>
+                                <h2 class="mb-10">Desa Buntu Mondong</h2>
+		                        <h5>{{$Nik}} / {{$NamaLengkap}}</h5>
+		                    </div>
+		                </div>
+		            </div>
+					<div class="row">
+
+                    @forelse ($PermohonanSurat as $ps)
+                    <div class="col-lg-4">
+                        <div class="single-destinations">
+                            <div class="thumb">
+                                <img src="/suratkeluar.png" alt="">
+                            </div>
+                            <div class="details">
+                                <h4>{{$ps->keperluansurat}}</h4>
+                                <p>
+                                   <b> {{$ps->tanggal}}</b>
+                                </p>
+                                @if($ps->statussurat == 1)
+                                <div class=""><span style="text-decoration:none;" class="btn btn-primary">&nbsp&nbsp Permohonan Baru / Menunggu &nbsp&nbsp</span></div>
+                                @elseif($ps->statussurat == 2)
+                                <div class=""><span style="text-decoration:none;" class="btn  btn-warning">&nbsp&nbsp Permohonan Ditolak &nbsp&nbsp</span></div>
+                                @elseif($ps->statussurat == 3)
+                                <div class=""><span style="text-decoration:none;" class="btn  btn-success">&nbsp&nbsp Permohonan Diterima &nbsp&nbsp</span></div>
+                                @endif
+
+                            </div>
+                        </div>
+					</div>
+                    @endforeach
+
+
+
+					</div>
+				</div>
+			</section>
+			<!-- End destinations Area -->
 
 
 
@@ -183,14 +195,7 @@
 							<div class="single-footer-widget mail-chimp">
 								<h6 class="mb-20">InstaFeed</h6>
 								<ul class="instafeed d-flex flex-wrap">
-									<li><img src="img/i1.jpg" alt=""></li>
-									<li><img src="img/i2.jpg" alt=""></li>
-									<li><img src="img/i3.jpg" alt=""></li>
-									<li><img src="img/i4.jpg" alt=""></li>
-									<li><img src="img/i5.jpg" alt=""></li>
-									<li><img src="img/i6.jpg" alt=""></li>
-									<li><img src="img/i7.jpg" alt=""></li>
-									<li><img src="img/i8.jpg" alt=""></li>
+
 								</ul>
 							</div>
 						</div>
@@ -211,20 +216,20 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 			</footer>
 			<!-- End footer Area -->
 
-			<script src="{{url('landingpage/js/vendor/jquery-2.2.4.min.js')}}"></script>
-			<script src="{{url('landingpage/js/popper.min.js')}}"></script>
-			<script src="{{url('landingpage/js/vendor/bootstrap.min.js')}}"></script>
+			<script src="{{url('/landingpage/js/vendor/jquery-2.2.4.min.js')}}"></script>
+			<script src="{{url('/landingpage/js/popper.min.js')}}"></script>
+			<script src="{{url('/landingpage/js/vendor/bootstrap.min.js')}}"></script>
 			<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>
- 			<script src="{{url('landingpage/js/jquery-ui.js')}}"></script>
-  			<script src="{{url('landingpage/js/easing.min.js')}}"></script>
-			<script src="{{url('landingpage/js/hoverIntent.js')}}"></script>
-			<script src="{{url('landingpage/js/superfish.min.js')}}"></script>
-			<script src="{{url('landingpage/js/jquery.ajaxchimp.min.js')}}"></script>
-			<script src="{{url('landingpage/js/jquery.magnific-popup.min.js')}}"></script>
-			<script src="{{url('landingpage/js/jquery.nice-select.min.js')}}"></script>
-			<script src="{{url('landingpage/js/owl.carousel.min.js')}}"></script>
-			<script src="{{url('landingpage/js/mail-script.js')}}"></script>
-			<script src="{{url('landingpage/js/main.js')}}"></script>
+ 			<script src="{{url('/landingpage/js/jquery-ui.js')}}"></script>
+  			<script src="{{url('/landingpage/js/easing.min.js')}}"></script>
+			<script src="{{url('/landingpage/js/hoverIntent.js')}}"></script>
+			<script src="{{url('/landingpage/js/superfish.min.js')}}"></script>
+			<script src="{{url('/landingpage/js/jquery.ajaxchimp.min.js')}}"></script>
+			<script src="{{url('/landingpage/js/jquery.magnific-popup.min.js')}}"></script>
+			<script src="{{url('/landingpage/js/jquery.nice-select.min.js')}}"></script>
+			<script src="{{url('/landingpage/js/owl.carousel.min.js')}}"></script>
+			<script src="{{url('/landingpage/js/mail-script.js')}}"></script>
+			<script src="{{url('/landingpage/js/main.js')}}"></script>
 		</body>
 	</html>
 

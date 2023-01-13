@@ -19,6 +19,7 @@ use App\Http\Controllers\ApproveSuratKeluarController;
 use App\Http\Controllers\SuratPdfController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\LandingPageController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -49,9 +50,17 @@ Route::get('/ceksurat', function () {
     return view('landingpage.ceksurat');
 });
 
+Route::get('/hasilsuratkeluar', function () {
+    return view('landingpage.suratkeluar');
+});
+
 Route::get('/login', function () {
     return view('landingpage.login');
 });
+
+Route::get('/ceksuratkeluar/{nik}', [LandingPageController::class, 'getCekSuratKeluarApprove'])->name('getCekSuratKeluarApprove');
+Route::get('/lihatsuratapprove/{id}', [SuratPdfController::class, 'lihatSuratApprove'])->name('get-lihat-surat-approve-pdf');
+
 
 
 Route::middleware(['auth'])->group(function (){

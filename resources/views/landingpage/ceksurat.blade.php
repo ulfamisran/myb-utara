@@ -56,14 +56,14 @@
 					<div class="row align-items-center justify-content-between d-flex">
 						<div id="logo">
 							<!-- <a href="index.html"><img src="landingpage/logo.png"  height="50" alt="" title="" /></a> -->
-							<b><a style="font-size:18px;" class="text-white" href="index.html"><img src="gambarlogo/logo_enrekang.png"  height="50" alt="" title="" /> Desa Buntu Mondong</a></b>
+							<b><a style="font-size:18px;" class="text-white" href="/"><img src="gambarlogo/logo_enrekang.png"  height="50" alt="" title="" /> Desa Buntu Mondong</a></b>
 						</div>
 						<nav id="nav-menu-container">
-							<ul class="nav-menu">
-							<li><a href="index.html">Home</a></li>
-							<li><a href="about.html">Cek Surat</a></li>
-
-							<li><a href="contact.html">Contact</a></li>
+                             <ul class="nav-menu">
+                                <li><a href="/">Home</a></li>
+                                <li><a href="/permohonansurat">Permohonan Surat</a></li>
+                                <li><a href="/ceksurat">Cek Surat</a></li>
+                                <li><a href="contact.html">Contact</a></li>
 							</ul>
 						</nav><!-- #nav-menu-container -->
 					</div>
@@ -89,8 +89,8 @@
 							<div class="tab-content" id="myTabContent">
 							<div class="tab-pane fade show active" id="flight" role="tabpanel" aria-labelledby="flight-tab">
                                 <form class="form-wrap"  id="form_insert_permohonansurat" method="POST">
-									<input type="text" class="form-control" id="nokkpemohon" name="name" placeholder="Masukkan No NIK / KTP " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Masukkan No KK'">
-                                    <button type="button" class="btn-sm primary-btn text-uppercase" id="cek_nokk_btn">Cek Permohonan Surat</button><br><br>
+									<input type="text" class="form-control" id="nonik" name="name" placeholder="Masukkan No NIK / KTP " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Masukkan No KK'">
+                                    <button type="button" class="btn-sm primary-btn text-uppercase" id="cek_surat_btn">Cek Permohonan Surat</button><br><br>
 								</form>
 							</div>
 							<!-- <div class="tab-pane fade" id="hotel" role="tabpanel" aria-labelledby="hotel-tab">
@@ -107,107 +107,9 @@
 							</div>
 						</div>
 					</div>
-                    <div class="row">
-						<div class="col-lg-4">
-							<div class="single-price">
-								<h4>Cheap Packages</h4>
-								<ul class="price-list">
-									<li class="d-flex justify-content-between align-items-center">
-										<span>New York</span>
-										<a href="#" class="price-btn">$1500</a>
-									</li>
-									<li class="d-flex justify-content-between align-items-center">
-										<span>Maldives</span>
-										<a href="#" class="price-btn">$1500</a>
-									</li>
-									<li class="d-flex justify-content-between align-items-center">
-										<span>Sri Lanka</span>
-										<a href="#" class="price-btn">$1500</a>
-									</li>
-									<li class="d-flex justify-content-between align-items-center">
-										<span>Nepal</span>
-										<a href="#" class="price-btn">$1500</a>
-									</li>
-									<li class="d-flex justify-content-between align-items-center">
-										<span>Thiland</span>
-										<a href="#" class="price-btn">$1500</a>
-									</li>
-									<li class="d-flex justify-content-between align-items-center">
-										<span>Singapore</span>
-										<a href="#" class="price-btn">$1500</a>
-									</li>
-								</ul>
-							</div>
-						</div>
-						<div class="col-lg-4">
-							<div class="single-price">
-								<h4>Luxury Packages</h4>
-								<ul class="price-list">
-									<li class="d-flex justify-content-between align-items-center">
-										<span>New York</span>
-										<a href="#" class="price-btn">$1500</a>
-									</li>
-									<li class="d-flex justify-content-between align-items-center">
-										<span>Maldives</span>
-										<a href="#" class="price-btn">$1500</a>
-									</li>
-									<li class="d-flex justify-content-between align-items-center">
-										<span>Sri Lanka</span>
-										<a href="#" class="price-btn">$1500</a>
-									</li>
-									<li class="d-flex justify-content-between align-items-center">
-										<span>Nepal</span>
-										<a href="#" class="price-btn">$1500</a>
-									</li>
-									<li class="d-flex justify-content-between align-items-center">
-										<span>Thiland</span>
-										<a href="#" class="price-btn">$1500</a>
-									</li>
-									<li class="d-flex justify-content-between align-items-center">
-										<span>Singapore</span>
-										<a href="#" class="price-btn">$1500</a>
-									</li>
-								</ul>
-							</div>
-						</div>
-						<div class="col-lg-4">
-							<div class="single-price">
-								<h4>Camping Packages</h4>
-								<ul class="price-list">
-									<li class="d-flex justify-content-between align-items-center">
-										<span>New York</span>
-										<a href="#" class="price-btn">$1500</a>
-									</li>
-									<li class="d-flex justify-content-between align-items-center">
-										<span>Maldives</span>
-										<a href="#" class="price-btn">$1500</a>
-									</li>
-									<li class="d-flex justify-content-between align-items-center">
-										<span>Sri Lanka</span>
-										<a href="#" class="price-btn">$1500</a>
-									</li>
-									<li class="d-flex justify-content-between align-items-center">
-										<span>Nepal</span>
-										<a href="#" class="price-btn">$1500</a>
-									</li>
-									<li class="d-flex justify-content-between align-items-center">
-										<span>Thiland</span>
-										<a href="#" class="price-btn">$1500</a>
-									</li>
-									<li class="d-flex justify-content-between align-items-center">
-										<span>Singapore</span>
-										<a href="#" class="price-btn">$1500</a>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
 				</div>
 			</section>
 			<!-- End banner Area -->
-
-
-
 
 
 			<!-- start footer Area -->
@@ -267,14 +169,7 @@
 							<div class="single-footer-widget mail-chimp">
 								<h6 class="mb-20">InstaFeed</h6>
 								<ul class="instafeed d-flex flex-wrap">
-									<li><img src="img/i1.jpg" alt=""></li>
-									<li><img src="img/i2.jpg" alt=""></li>
-									<li><img src="img/i3.jpg" alt=""></li>
-									<li><img src="img/i4.jpg" alt=""></li>
-									<li><img src="img/i5.jpg" alt=""></li>
-									<li><img src="img/i6.jpg" alt=""></li>
-									<li><img src="img/i7.jpg" alt=""></li>
-									<li><img src="img/i8.jpg" alt=""></li>
+
 								</ul>
 							</div>
 						</div>
@@ -295,20 +190,20 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 			</footer>
 			<!-- End footer Area -->
 
-			<script src="{{url('landingpage/js/vendor/jquery-2.2.4.min.js')}}"></script>
-			<script src="{{url('landingpage/js/popper.min.js')}}"></script>
-			<script src="{{url('landingpage/js/vendor/bootstrap.min.js')}}"></script>
+			<script src="{{url('/landingpage/js/vendor/jquery-2.2.4.min.js')}}"></script>
+			<script src="{{url('/landingpage/js/popper.min.js')}}"></script>
+			<script src="{{url('/landingpage/js/vendor/bootstrap.min.js')}}"></script>
 			<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>
- 			<script src="{{url('landingpage/js/jquery-ui.js')}}"></script>
-  			<script src="{{url('landingpage/js/easing.min.js')}}"></script>
-			<script src="{{url('landingpage/js/hoverIntent.js')}}"></script>
-			<script src="{{url('landingpage/js/superfish.min.js')}}"></script>
-			<script src="{{url('landingpage/js/jquery.ajaxchimp.min.js')}}"></script>
-			<script src="{{url('landingpage/js/jquery.magnific-popup.min.js')}}"></script>
-			<script src="{{url('landingpage/js/jquery.nice-select.min.js')}}"></script>
-			<script src="{{url('landingpage/js/owl.carousel.min.js')}}"></script>
-			<script src="{{url('landingpage/js/mail-script.js')}}"></script>
-			<script src="{{url('landingpage/js/main.js')}}"></script>
+ 			<script src="{{url('/landingpage/js/jquery-ui.js')}}"></script>
+  			<script src="{{url('/landingpage/js/easing.min.js')}}"></script>
+			<script src="{{url('/landingpage/js/hoverIntent.js')}}"></script>
+			<script src="{{url('/landingpage/js/superfish.min.js')}}"></script>
+			<script src="{{url('/landingpage/js/jquery.ajaxchimp.min.js')}}"></script>
+			<script src="{{url('/landingpage/js/jquery.magnific-popup.min.js')}}"></script>
+			<script src="{{url('/landingpage/js/jquery.nice-select.min.js')}}"></script>
+			<script src="{{url('/landingpage/js/owl.carousel.min.js')}}"></script>
+			<script src="{{url('/landingpage/js/mail-script.js')}}"></script>
+			<script src="{{url('/landingpage/js/main.js')}}"></script>
 		</body>
 	</html>
 
@@ -326,63 +221,12 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
             });
 
 
-        $('#cek_nokk_btn').click(function (e) {
-            e.preventDefault();
-            var nokk = $('#nokkpemohon').val()
-            console.log(nokk);
-            $.ajax({
-                type: "GET",
-                url : SITEURL + "/admin/getdetailkkbykk/"+nokk,
-                success: function (response) {
-                        if(!response){
-                            swal("Error!", " NOMOR KARTU KELUARGA Tidak Ditemukan.", "error");
-                        }else{
-                            swal("Done!", "NOMOR KARTU KELUARGA Ditemukan!", "success");
-                            var i;
-                            html='<option selected="" value="0" data-id="0" >Pilih Nomor NIK</option>';
-                            for (i=0; i<response.length; i++){
-                                    html += '<option value = '+response[i].namalengkap+' data= '+response[i].nonik+'>'+response[i].nonik+" - "+response[i].namalengkap+'</option>';
-                            }
-
-                            $('#nikpemohon').html(html);
-                        }
-                }
-            });
+        $('body').on('click', '#cek_surat_btn', function(e){
+            var nonik = $('#nonik').val();
+            window.location = SITEURL + '/ceksuratkeluar/'+nonik;
         });
 
-        $('#simpan_permohonansurat_btn').click( function(e) {
-            console.log("action button insert");
 
-            e.preventDefault();
-            var formdata ={
-                nokkpemohon:$('#nokkpemohon').val(),
-                nikpemohon:$('#nikpemohon option:selected').attr('data'),
-                namapemohon:$('#nikpemohon option:selected').val(),
-                // jenissurat:$('#jenissurat option:selected').val(),
-                // formatsurat:$('#formatsurat option:selected').val(),
-                // perihal:$('#perihalsurat').val(),
-                keperluansurat:$('#keperluansurat').val()
-            }
-            console.log(formdata);
-
-            $.ajax({
-                url:"{{route('tambah-permohonansurat')}}" ,
-                method:'POST',
-                data:formdata,
-                dataType:'json',
-                success:function(result){
-                    console.log(result);
-                    if(result.status=="success"){
-                        swal("Done!", "Permohonan Surat Berhasil Ditambahkan!", "success");
-                    } else if (result.status=="failed"){
-                        swal("Error!", "Permohonan Surat Gagal Ditambahkan!", "error");
-                    } else{
-                        swal ("Error!", "Kesalahan Proses Penambahan Data!", "error");
-                    }
-                    $('#form_insert_permohonansurat').trigger("reset");
-                }
-            });
-        });
 
     });
 </script>

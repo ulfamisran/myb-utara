@@ -60,9 +60,9 @@
 						</div>
 						<nav id="nav-menu-container">
 							<ul class="nav-menu">
-							<li><a href="index.html">Home</a></li>
-							<li><a href="about.html">Cek Surat</a></li>
-
+							<li><a href="/">Home</a></li>
+							<li><a href="/permohonansurat">Permohonan Surat</a></li>
+							<li><a href="/ceksurat">Cek Surat</a></li>
 							<li><a href="contact.html">Contact</a></li>
 							</ul>
 						</nav><!-- #nav-menu-container -->
@@ -88,7 +88,7 @@
 							<a href="#" class="primary-btn text-uppercase">CEK SURAT SAYA</a>
 						</div>
 						<div class="col-lg-6 col-md-6 banner-right">
-						<br><br><br><br><br>
+						<br><br>
 							<ul class="nav nav-tabs" id="myTab" role="tablist">
 							<li class="nav-item">
 								<a class="nav-link active" id="flight-tab" data-toggle="tab" href="#flight" role="tab" aria-controls="flight" aria-selected="true">Cek No.KK</a>

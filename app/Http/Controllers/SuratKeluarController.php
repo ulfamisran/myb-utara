@@ -92,8 +92,8 @@ class SuratKeluarController extends Controller
     public function getTabelSuratKeluarApprove(){
         $data = DB::table('tb_suratkeluar')->join('tb_penduduk', 'tb_suratkeluar.nonik', '=', 'tb_penduduk.nonik')
         ->join('tb_approve_suratkeluar', 'tb_approve_suratkeluar.id_suratkeluar', '=', 'tb_suratkeluar.id')
-        ->select('tb_suratkeluar.*', 'tb_penduduk.nonik as nonik', 'tb_penduduk.namalengkap as namalengkap', 'tb_approve_suratkeluar.nomorsurat as nomorsurat')
-        ->where('tb_suratkeluar.approve', '=', '1')
+        ->select('tb_suratkeluar.*', 'tb_penduduk.nonik as nonik', 'tb_penduduk.namalengkap as namalengkap', 'tb_approve_suratkeluar.id','tb_approve_suratkeluar.nomorsurat as nomorsurat')
+        ->where('tb_suratkeluar.approve', '=', '1')->orderBy('idapprove', 'DESC')
         ->get();
 
         return DataTables()->of($data)

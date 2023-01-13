@@ -447,11 +447,13 @@
             columns:
             [
                 {
-                    "data": 'DT_RowIndex',
-                    orderable: false,
-                    searchable: false
 
-                },{
+                    data:'idapprove',
+                    name:'idapprove',
+                    orderable:true
+
+                },
+                {
                     data:'nosurat',
                     name:'nosurat',
                     orderable:false
