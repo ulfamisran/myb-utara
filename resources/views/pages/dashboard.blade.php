@@ -12,8 +12,8 @@
                     <div class="card-wrap">
                     <div class="padding-20">
                         <div class="text-right">
-                        <h3 class="font-light mb-0">
-                            <i class="ti-arrow-up text-success"></i> 462
+                        <h3 class="font-light mb-0" id="total_kk">
+                            <i class="ti-arrow-up text-success"></i>
                         </h3>
                         <span class="text-muted">Jumlah Kepala Keluarga</span>
                         </div>
@@ -29,8 +29,8 @@
                     <div class="card-wrap">
                     <div class="padding-20">
                         <div class="text-right">
-                        <h3 class="font-light mb-0">
-                            <i class="ti-arrow-up text-success"></i> 1.820
+                        <h3 class="font-light mb-0" id="total_penduduk">
+                            <i class="ti-arrow-up text-success"></i>
                         </h3>
                         <span class="text-muted">Jumlah Penduduk</span>
                         </div>
@@ -43,16 +43,18 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                    <h4>Cek Kartu Keluarga atau NIK Penduduk</h4>
+                    <h4>Cek NIK Penduduk</h4>
                     </div>
                     <div class="card-body pb-0">
-                    <div class="form-group">
-                        <label>Nomor Kartu Keluarga / NIK</label>
-                        <input type="number" name="title" id="nokk" class="form-control" required>
+                    <div class="form-group" >
+                    <form class="form-wrap" id="form_cek_nik">
+                        <label>Nomor NIK</label>
+                        <input type="number" name="title" id="nonik" class="form-control" required>
+                    </fomr>
                     </div>
                     </div>
                     <div class="card-footer pt-0">
-                    <button class="btn btn-primary">Cek Nomor KK / NIK</button>
+                    <button class="btn btn-primary" id="cek_nonik_btn">Cek Nomor NIK</button>
                     </div>
                 </div>
             </div>
@@ -70,7 +72,7 @@
                 <div class="card-icon card-icon-large"><i class="fa fa-file-alt"></i></div>
                 <div class="card-content">
                 <h4 class="card-title">Jumlah Format Surat</h4>
-                <span>40 Format Surat</span>
+                <span id="total_formatsurat"></span> Format Surat
                 <div class="progress mt-1 mb-1" data-height="8">
                     <div class="progress-bar l-bg-purple" role="progressbar" data-width="100%" aria-valuenow="100"
                     aria-valuemin="0" aria-valuemax="100"></div>
@@ -88,7 +90,7 @@
                 <div class="card-icon card-icon-large"><i class="fa fa-envelope-open"></i></div>
                 <div class="card-content">
                 <h4 class="card-title">Surat Masuk</h4>
-                <span>30 Surat Masuk</span>
+                <span id="total_suratmasuk"></span> Surat Masuk
                 <div class="progress mt-1 mb-1" data-height="8">
                     <div class="progress-bar l-bg-orange" role="progressbar" data-width="100%" aria-valuenow="100"
                     aria-valuemin="0" aria-valuemax="100"></div>
@@ -106,7 +108,7 @@
                 <div class="card-icon card-icon-large"><i class="fa fa-inbox"></i></div>
                 <div class="card-content">
                 <h4 class="card-title">Permohonan Surat</h4>
-                <span>4 Permohonan Surat</span>
+                <span id="total_permohonansurat"></span> Permohonan Surat
                 <div class="progress mt-1 mb-1" data-height="8">
                     <div class="progress-bar l-bg-cyan" role="progressbar" data-width="100%" aria-valuenow="100"
                     aria-valuemin="0" aria-valuemax="100"></div>
@@ -124,7 +126,7 @@
                 <div class="card-icon card-icon-large"><i class="fa fa-envelope"></i></div>
                 <div class="card-content">
                 <h4 class="card-title">Surat Keluar</h4>
-                <span>120 Surat Keluar </span>
+                <span id="total_suratkeluar"> </span> Surat Keluar
                 <div class="progress mt-1 mb-1" data-height="8">
                     <div class="progress-bar l-bg-green" role="progressbar" data-width="100%" aria-valuenow="100"
                     aria-valuemin="0" aria-valuemax="100"></div>
@@ -172,6 +174,24 @@
 <script type="text/javascript">
 
 var SITEURL = '{{URL::to('')}}';
+
+jQuery(document).ready(function(){
+
+     $.ajax({
+         url:SITEURL +'/admin/getdatadash',
+         success:function (result){
+            //  obj = JSON.parse(result);
+             document.getElementById('total_kk').innerHTML=result[0].total_kk;
+             document.getElementById('total_penduduk').innerHTML=result[0].total_penduduk;
+             document.getElementById('total_formatsurat').innerHTML=result[0].total_format_surat;
+             document.getElementById('total_suratmasuk').innerHTML=result[0].total_surat_masuk;
+             document.getElementById('total_permohonansurat').innerHTML=result[0].total_permohonan_surat;
+             document.getElementById('total_suratkeluar').innerHTML=result[0].total_surat_keluar;
+         }
+     });
+ });
+
+
 $(function(){
     $.ajaxSetup({
             headers: {
@@ -212,7 +232,28 @@ $(function(){
             }
         ],
     });
+
+    $('#cek_nonik_btn').click(function (e) {
+        e.preventDefault();
+        var nonik = $('#nonik').val()
+        console.log(nonik);
+        $.ajax({
+            type: "GET",
+            url : SITEURL + "/admin/getpendudukbynik/"+nonik,
+            success: function (response) {
+                    if(!response){
+                        swal("Error!", " PENDUDUK TIDAK TERDAFTAR.", "error");
+                    }else{
+                        swal("Done!", "PENDUDUK TERDAFTAR!", "success");
+                    }
+                    $('#form_cek_nik').trigger("reset");
+            }
+        });
+    });
+
 });
+
+
 
 </script>
 

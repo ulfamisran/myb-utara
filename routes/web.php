@@ -20,6 +20,8 @@ use App\Http\Controllers\SuratPdfController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LandingPageController;
+use App\Http\Controllers\VwDataDashboardController;
+
 
 use Illuminate\Support\Facades\Route;
 
@@ -54,6 +56,10 @@ Route::get('/hasilsuratkeluar', function () {
     return view('landingpage.suratkeluar');
 });
 
+Route::get('/hasilsuratkeluar1', function () {
+    return view('landingpage.suratkeluar1');
+});
+
 Route::get('/login', function () {
     return view('landingpage.login');
 });
@@ -83,6 +89,9 @@ Route::middleware(['auth'])->group(function (){
     Route::get('/admin/previewsurat', [ViewController::class, 'previewSuratView'])->name('preview-surat-view');
     // Route::get('/admin/userview', [ViewController::class, 'userView'])->name('user-surat-view');
 
+
+    //DASHBOARD
+    Route::get('/admin/getdatadash', [VwDataDashboardController::class, 'getAllDataDashboard'])->name('get-data-dash');
 
     //AGAMA
     Route::get('/admin/gettabelagama', [AgamaController::class, 'getTabelAgama'])->name('get-tabel-agama');

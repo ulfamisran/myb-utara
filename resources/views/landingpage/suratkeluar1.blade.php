@@ -72,7 +72,7 @@
                                     <li class="d-flex justify-content-between align-items-center">
                                         <b><span>Isi Surat</span></b>
                                         @if($sk->file == null)
-                                        <a href="/lihatsuratapprove/{{$sk->idapprove}}" target="_blank" class="price-btn">Lihat Surat</a>
+                                        <a href="/lihatsuratapprove/{{$sk->idapprove}}" target="_blank" class="price-btn">Lihar Surat</a>
                                         @else
                                         <a href="/suratkeluar/{{$sk->file}}"  target="_blank" class="price-btn">Lihat Surat</a>
                                         @endif

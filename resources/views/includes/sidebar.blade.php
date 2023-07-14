@@ -1,8 +1,8 @@
 <div class="main-sidebar sidebar-style-2">
     <aside id="sidebar-wrapper">
         <div class="sidebar-brand">
-            <a href="index.html"> <img alt="image" src="{{url('img/logo.png')}}" class="header-logo" /> <span
-                    class="logo-name">Aplikasi Persuratan</span>
+            <a href="/admin/dashboardview"> <img alt="image" src="/gambarlogo/logo_enrekang.png" class="header-logo" /> <span
+                    class="logo-name">SIMDES</span>
             </a>
         </div>
         <div class="sidebar-user">
