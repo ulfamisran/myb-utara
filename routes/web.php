@@ -1,23 +1,14 @@
 <?php
 
 use App\Http\Controllers\ViewController;
-use App\Http\Controllers\AgamaController;
-use App\Http\Controllers\PendidikanController;
-use App\Http\Controllers\PekerjaanController;
-use App\Http\Controllers\StatusKeluargaController;
-use App\Http\Controllers\PendudukController;
-use App\Http\Controllers\SuratMasukController;
-use App\Http\Controllers\KkController;
-use App\Http\Controllers\JenisSuratController;
-use App\Http\Controllers\FormatSuratController;
-use App\Http\Controllers\DetailKkController;
-use App\Http\Controllers\PermohonanSuratController;
-use App\Http\Controllers\PengesahanController;
-use App\Http\Controllers\SuratKeluarController;
-use App\Http\Controllers\FormatPengesahanController;
-use App\Http\Controllers\ApproveSuratKeluarController;
-use App\Http\Controllers\SuratPdfController;
+use App\Http\Controllers\KecamatanController;
+use App\Http\Controllers\KelurahanController;
+use App\Http\Controllers\TpsController;
+use App\Http\Controllers\PallawaController;
+use App\Http\Controllers\PatappaController;
+use App\Http\Controllers\PemilihController;
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\DownloadExcel;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\VwDataDashboardController;
@@ -41,192 +32,99 @@ Route::get('/logout', [LoginController::class, 'logOut'])->name('logout');
 
 
 Route::get('/', function () {
-    return view('landingpage.index');
-});
-
-Route::get('/permohonansurat', function () {
-    return view('landingpage.permohonansurat');
-});
-
-Route::get('/ceksurat', function () {
-    return view('landingpage.ceksurat');
-});
-
-Route::get('/hasilsuratkeluar', function () {
-    return view('landingpage.suratkeluar');
-});
-
-Route::get('/hasilsuratkeluar1', function () {
-    return view('landingpage.suratkeluar1');
-});
-
-Route::get('/login', function () {
     return view('landingpage.login');
 });
+
+
 
 Route::get('/ceksuratkeluar/{nik}', [LandingPageController::class, 'getCekSuratKeluarApprove'])->name('getCekSuratKeluarApprove');
 Route::get('/lihatsuratapprove/{id}', [SuratPdfController::class, 'lihatSuratApprove'])->name('get-lihat-surat-approve-pdf');
 
 
 
-Route::middleware(['auth'])->group(function (){
+// Route::middleware(['auth'])->group(function (){
     //VIEW
 
     Route::get('/admin/dashboardview', [ViewController::class, 'dashboardView'])->name('dashboard-view');
-    Route::get('/admin/agamaview', [ViewController::class, 'agamaView'])->name('agama-view');
-    Route::get('/admin/pekerjaanview', [ViewController::class, 'pekerjaanView'])->name('pekerjaan-view');
-    Route::get('/admin/pendidikanview', [ViewController::class, 'pendidikanView'])->name('pendidikan-view');
-    Route::get('/admin/statuskeluargaview', [ViewController::class, 'statusKeluargaView'])->name('statuskeluarga-view');
-    Route::get('/admin/pendudukview', [ViewController::class, 'pendudukView'])->name('penduduk-view');
-    Route::get('/admin/kkview', [ViewController::class, 'kkView'])->name('kk-view');
-    Route::get('/admin/detailkkview/{nokk}', [ViewController::class, 'detailKkView'])->name('detail-kk-view');
-    Route::get('/admin/jenissuratview', [ViewController::class, 'jenisSuratView'])->name('jeniss-surat-view');
-    Route::get('/admin/formatsuratview', [ViewController::class, 'FormatSuratView'])->name('format-surat-view');
-    Route::get('/admin/permohonansuratview', [ViewController::class, 'permohonanSuratView'])->name('permohonan-surat-view');
-    Route::get('/admin/suratmasukview', [ViewController::class, 'suratMasukView'])->name('surat-masuk-view');
-    Route::get('/admin/suratkeluarview', [ViewController::class, 'suratKeluarView'])->name('surat-keluar-view');
-    Route::get('/admin/pengesahanview', [ViewController::class, 'pengesahanView'])->name('pengesahan-view');
-    Route::get('/admin/previewsurat', [ViewController::class, 'previewSuratView'])->name('preview-surat-view');
-    // Route::get('/admin/userview', [ViewController::class, 'userView'])->name('user-surat-view');
+    Route::get('/admin/persebarantpsview', [ViewController::class, 'persebaranTpsView'])->name('persebaran-tps-view');
+    Route::get('/admin/kecamatanview', [ViewController::class, 'kecamatanView'])->name('kecamatan-view');
+    Route::get('/admin/kelurahanview/{id_kecamatan}', [ViewController::class, 'kelurahanView'])->name('kecamatan-view');
+    Route::get('/admin/tpsview/{id_kecamatan}/{id_kelurahan}', [ViewController::class, 'tpsView'])->name('kecamatan-view');
+    Route::get('/admin/pallawaview', [ViewController::class, 'pallawaView'])->name('pallawa-view');
+    Route::get('/admin/patappaview/{id_pallawa}', [ViewController::class, 'patappaView'])->name('patappa-view');
+    Route::get('/admin/pemilihbytimview/{id_pallawa}/{id_patappa}', [ViewController::class, 'pemilihByTimView'])->name('kecamatan-view');
+    Route::get('/admin/pemilihbytpsview/{id_kecamatan}/{id_kelurahan}/{id_tps}', [ViewController::class, 'pemilihByTpsView'])->name('kecamatan-view');
+    Route::get('/admin/persebarantpsview/{id_kecamatan}/{id_kelurahan}', [ViewController::class, 'persebaranTpsView'])->name('persebarantps-view');
+    Route::get('/admin/persebarantimview/{id_pallawa}/{id_patappa}', [ViewController::class, 'persebaranTimView'])->name('persebarantim-view');
+
 
 
     //DASHBOARD
     Route::get('/admin/getdatadash', [VwDataDashboardController::class, 'getAllDataDashboard'])->name('get-data-dash');
 
-    //AGAMA
-    Route::get('/admin/gettabelagama', [AgamaController::class, 'getTabelAgama'])->name('get-tabel-agama');
-    Route::get('/admin/getallagama', [AgamaController::class, 'getAllAgama'])->name('get-all-agama');
-    Route::get('/admin/getagama/{id}', [AgamaController::class, 'getAgamaById'])->name('get-agama-by-id');
-    Route::any('/admin/tambahagama', [AgamaController::class, 'tambahAgama'])->name('tambah-agama');
-    Route::post('/admin/updateagama', [AgamaController::class, 'updateAgama'])->name('update-agama');
-    Route::get('/admin/hapusagama/{id}', [AgamaController::class, 'hapusAgama'])->name('hapus-agama');
+    //KECAMATAN
+    Route::get('/admin/gettabelkecamatan', [KecamatanController::class, 'getTabelKecamatan'])->name('get-tabel-kecamatan');
+    Route::get('/admin/getallkecamatan', [KecamatanController::class, 'getAllKecamatan'])->name('get-all-kecamatan');
+    Route::get('/admin/getkecamatan/{id}', [KecamatanController::class, 'getKecamatanById'])->name('get-kecamatan-by-id');
+    Route::any('/admin/tambahkecamatan', [KecamatanController::class, 'tambahKecamatan'])->name('tambah-kecamatan');
+    Route::post('/admin/updatekecamatan', [KecamatanController::class, 'updateKecamatan'])->name('update-kecamatan');
+    Route::get('/admin/hapuskecamatan/{id}', [KecamatanController::class, 'hapusKecamatan'])->name('hapus-kecamatan');
 
-    //PEKERJAAN
-    Route::get('/admin/gettabelpekerjaan', [PekerjaanController::class, 'getTabelPekerjaan'])->name('get-tabel-pekerjaan');
-    Route::get('/admin/getallpekerjaan', [PekerjaanController::class, 'getAllPekerjaan'])->name('get-all-pekerjaan');
-    Route::get('/admin/getpekerjaan/{id}', [PekerjaanController::class, 'getPekerjaanById'])->name('get-pekerjaan-by-id');
-    Route::any('/admin/tambahpekerjaan', [PekerjaanController::class, 'tambahPekerjaan'])->name('tambah-pekerjaan');
-    Route::post('/admin/updatepekerjaan', [PekerjaanController::class, 'updatePekerjaan'])->name('update-pekerjaan');
-    Route::get('/admin/hapuspekerjaan/{id}', [PekerjaanController::class, 'hapusPekerjaan'])->name('hapus-pekerjaan');
+    //KELURAHAN
+    Route::get('/admin/gettabelkelurahan', [KelurahanController::class, 'getTabelKelurahan'])->name('get-tabel-kelurahan');
+    Route::get('/admin/gettabelkelurahan/bykecamatan/{id_kec}', [KelurahanController::class, 'getTabelKelurahanByKecamatan'])->name('get-tabel-kelurahan-bykecamatan');
+    Route::get('/admin/getallkelurahan', [KelurahanController::class, 'getAllKelurahan'])->name('get-all-kelurahan');
+    Route::get('/admin/getkelurahan/{id}', [KelurahanController::class, 'getKelurahanById'])->name('get-kelurahan-by-id');
+    Route::get('/admin/getkelurahan/bykecamatan/{id_kec}', [KelurahanController::class, 'getKelurahanByIdKecamatan'])->name('get-kelurahan-by-id-kecamatan');
+    Route::any('/admin/tambahkelurahan', [KelurahanController::class, 'tambahKelurahan'])->name('tambah-kelurahan');
+    Route::post('/admin/updatekelurahan', [KelurahanController::class, 'updateKelurahan'])->name('update-kelurahan');
+    Route::get('/admin/hapuskelurahan/{id}', [KelurahanController::class, 'hapusKelurahan'])->name('hapus-kelurahan');
 
+    //TPS
+    // Route::get('/admin/gettabeltps', [TpsController::class, 'getTabelTps'])->name('get-tabel-tps');
+    Route::get('/admin/gettabeltps/bykecamatan/{id_kec}', [TpsController::class, 'getTabelTpsByKecamatan'])->name('get-tabel-tps-bykecamatan');
+    Route::get('/admin/gettabeltps/bykecamatan/bykelurahan/{id_kec}/{id_kel}', [TpsController::class, 'getTabelTps'])->name('get-tabel-tps-bykecamatan');
+    Route::get('/admin/getalltps', [TpsController::class, 'getAllTps'])->name('get-all-tps');
+    Route::get('/admin/gettps/{id}', [TpsController::class, 'getTpsById'])->name('get-tps-by-id');
+    Route::get('/admin/gettps/bykecamatan/bykelurahan/{id_kec}/{id_kel}', [TpsController::class, 'getTpsByIdKecamatanKelurahan'])->name('get-tps-by-id-kecamatan');
+    Route::get('/admin/gettps/bykecamatan/bykelurahan/bytps/{id_kec}/{id_kel}/{id_tps}', [TpsController::class, 'getTpsByIdKecamatanKelurahanTps'])->name('get-tps-by-id-kecamatan-kelurahan-tps');
+    Route::any('/admin/tambahtps', [TpsController::class, 'tambahTps'])->name('tambah-tps');
+    Route::post('/admin/updatetps', [TpsController::class, 'updateTps'])->name('update-tps');
+    Route::get('/admin/hapustps/{id}', [TpsController::class, 'hapusTps'])->name('hapus-tps');
 
-    //JENISSURAT
-    Route::get('/admin/gettabeljenissurat', [JenisSuratController::class, 'getTabelJenisSurat'])->name('get-tabel-jenissurat');
-    Route::get('/admin/getalljenissurat', [JenisSuratController::class, 'getAllJenisSurat'])->name('get-all-jenissurat');
-    Route::get('/admin/getjenissurat/{id}', [JenisSuratController::class, 'getJenisSuratById'])->name('get-jenissurat-by-id');
-    Route::any('/admin/tambahjenissurat', [JenisSuratController::class, 'tambahJenisSurat'])->name('tambah-jenissurat');
-    Route::post('/admin/updatejenissurat', [JenisSuratController::class, 'updateJenisSurat'])->name('update-jenissurat');
-    Route::get('/admin/hapusjenissurat/{id}', [JenisSuratController::class, 'hapusJenisSurat'])->name('hapus-jenissurat');
+    //PALLAWA
+    Route::get('/admin/gettabelpallawa', [PallawaController::class, 'getTabelPallawa'])->name('get-tabel-pallawa');
+    Route::get('/admin/getallpallawa', [PallawaController::class, 'getAllPallawa'])->name('get-all-pallawa');
+    Route::get('/admin/getpallawa/{id}', [PallawaController::class, 'getPallawaById'])->name('get-pallawa-by-id');
+    Route::any('/admin/tambahpallawa', [PallawaController::class, 'tambahPallawa'])->name('tambah-pallawa');
+    Route::post('/admin/updatepallawa', [PallawaController::class, 'updatePallawa'])->name('update-pallawa');
+    Route::get('/admin/hapuspallawa/{id}', [PallawaController::class, 'hapusPallawa'])->name('hapus-pallawa');
 
-    //FORMATSURAT
-    Route::get('/admin/gettabelformatsurat', [FormatSuratController::class, 'getTabelFormatSurat'])->name('get-tabel-formatsurat');
-    Route::get('/admin/getallformatsurat', [FormatSuratController::class, 'getAllFormatSurat'])->name('get-all-formatsurat');
-    Route::get('/admin/getformatsuratbyjenissurat/{jenissurat}', [FormatSuratController::class, 'getFormatSuratByJenisSurat'])->name('get-formatsurat-by-jenissurat');
-    Route::get('/admin/getformatsurat/{id}', [FormatSuratController::class, 'getFormatSuratById'])->name('get-formatsurat-by-id');
-    Route::any('/admin/tambahformatsurat', [FormatSuratController::class, 'tambahFormatSurat'])->name('tambah-formatsurat');
-    Route::post('/admin/updateformatsurat', [FormatSuratController::class, 'updateFormatSurat'])->name('update-formatsurat');
-    Route::get('/admin/hapusformatsurat/{id}', [FormatSuratController::class, 'hapusFormatSurat'])->name('hapus-formatsurat');
-    Route::get('/admin/lihatformatsurat/{id}', [FormatSuratController::class, 'lihatFormatSurat'])->name('lihat-formatsurat');
+    //PATAPPA
+    Route::get('/admin/gettabelpatappa', [PatappaController::class, 'getTabelPatappa'])->name('get-tabel-patappa');
+    Route::get('/admin/gettabelpatappa/bypallawa/{id_kec}', [PatappaController::class, 'getTabelPatappaByPallawa'])->name('get-tabel-patappa-bypallawa');
+    Route::get('/admin/getallpatappa', [PatappaController::class, 'getAllPatappa'])->name('get-all-patappa');
+    Route::get('/admin/getpatappa/{id}', [PatappaController::class, 'getPatappaById'])->name('get-patappa-by-id');
+    Route::get('/admin/getpatappa/bypallawa/{id_kec}', [PatappaController::class, 'getPatappaByIdPallawa'])->name('get-patappa-by-id-pallawa');
+    Route::any('/admin/tambahpatappa', [PatappaController::class, 'tambahPatappa'])->name('tambah-patappa');
+    Route::post('/admin/updatepatappa', [PatappaController::class, 'updatePatappa'])->name('update-patappa');
+    Route::get('/admin/hapuspatappa/{id}', [PatappaController::class, 'hapusPatappa'])->name('hapus-patappa');
 
+    //PEMILIH
+    Route::get('/admin/gettabelpemilih/bypallawa/bypatappa/{id_pallawa}/{id_patappa}', [PemilihController::class, 'getTabelPemilihByTim'])->name('get-tabel-pemilih-bypallawa');
+    Route::get('/admin/gettabelpemilih/bytps/{id_kec}/{id_kel}/{id_tps}', [PemilihController::class, 'getTabelPemilihByTps'])->name('get-tabel-pemilih-bypallawa');
+    Route::get('/admin/getallpemilih', [PemilihController::class, 'getAllPemilih'])->name('get-all-pemilih');
+    Route::get('/admin/getpemilih/{id}', [PemilihController::class, 'getPemilihById'])->name('get-pemilih-by-id');
+    Route::get('/admin/getpemilih/bypallawa/bypatappa/{id_pallawa}/{id_patappa}', [PemilihController::class, 'getPemilihByIdKecamatanKelurahan'])->name('get-pemilih-by-id-pallawa');
+    Route::get('/admin/getpemilih/groupbytps/bypallawa/bypatappa/{id_pallawa}/{id_patappa}', [PemilihController::class, 'getTpsPemilihByTim'])->name('get-tps-pemilih-by-tim');
+    Route::any('/admin/tambahpemilih', [PemilihController::class, 'tambahPemilih'])->name('tambah-pemilih');
+    Route::post('/admin/updatepemilih', [PemilihController::class, 'updatePemilih'])->name('update-pemilih');
+    Route::get('/admin/hapuspemilih/{id}', [PemilihController::class, 'hapusPemilih'])->name('hapus-pemilih');
 
-    //PENDIDIKAN
-    Route::get('/admin/gettabelpendidikan', [PendidikanController::class, 'getTabelPendidikan'])->name('get-tabel-pendidikan');
-    Route::get('/admin/getallpendidikan', [PendidikanController::class, 'getAllPendidikan'])->name('get-all-pendidikan');
-    Route::get('/admin/getpendidikan/{id}', [PendidikanController::class, 'getPendidikanById'])->name('get-pendidikan-by-id');
-    Route::any('/admin/tambahpendidikan', [PendidikanController::class, 'tambahPendidikan'])->name('tambah-pendidikan');
-    Route::post('/admin/updatependidikan', [PendidikanController::class, 'updatePendidikan'])->name('update-pendidikan');
-    Route::get('/admin/hapuspendidikan/{id}', [PendidikanController::class, 'hapusPendidikan'])->name('hapus-pendidikan');
+    //DOWNLOAD EXCEL
+    Route::post('/download-excel', [DownloadExcel::class, 'downloadExcel'])->name('get-data-dash');
 
-    //STATUS KELUARGA
-    Route::get('/admin/gettabelstatuskeluarga', [StatusKeluargaController::class, 'getTabelStatusKeluarga'])->name('get-tabel-statuskeluarga');
-    Route::get('/admin/getallstatuskeluarga', [StatusKeluargaController::class, 'getAllStatusKeluarga'])->name('get-all-statuskeluarga');
-    Route::get('/admin/getstatuskeluarga/{id}', [StatusKeluargaController::class, 'getStatusKeluargaById'])->name('get-statuskeluarga-by-id');
-    Route::any('/admin/tambahstatuskeluarga', [StatusKeluargaController::class, 'tambahStatusKeluarga'])->name('tambah-statuskeluarga');
-    Route::post('/admin/updatestatuskeluarga', [StatusKeluargaController::class, 'updateStatusKeluarga'])->name('update-statuskeluarga');
-    Route::get('/admin/hapusstatuskeluarga/{id}', [StatusKeluargaController::class, 'hapusStatusKeluarga'])->name('hapus-statuskeluarga');
-
-    //PENDUDUK
-    Route::get('/admin/gettabelpenduduk', [PendudukController::class, 'getTabelPenduduk'])->name('get-tabel-penduduk');
-    Route::get('/admin/getallpenduduk', [PendudukController::class, 'getAllPenduduk'])->name('get-all-penduduk');
-    Route::get('/admin/getpenduduk/{id}', [PendudukController::class, 'getPendudukById'])->name('get-penduduk-by-id');
-    Route::get('/admin/getpendudukbynik/{nik}', [PendudukController::class, 'getPendudukByNik'])->name('get-penduduk-by-nik');
-    Route::any('/admin/tambahpenduduk', [PendudukController::class, 'tambahPenduduk'])->name('tambah-penduduk');
-    Route::post('/admin/updatependuduk', [PendudukController::class, 'updatePenduduk'])->name('update-penduduk');
-    Route::get('/admin/hapuspenduduk/{id}', [PendudukController::class, 'hapusPenduduk'])->name('hapus-penduduk');
-
-    //KARTU KELUARGA
-    Route::get('/admin/gettabelkk', [KkController::class, 'getTabelKk'])->name('get-tabel-kk');
-    Route::get('/admin/getallkk', [KkController::class, 'getAllKk'])->name('get-all-kk');
-    Route::get('/admin/getkk/{nokk}', [KkController::class, 'getKkByNoKk'])->name('get-kk-by-id');
-    Route::any('/admin/tambahkk', [KkController::class, 'tambahKk'])->name('tambah-kk');
-    Route::post('/admin/updatekk', [KkController::class, 'updateKk'])->name('update-kk');
-    Route::get('/admin/hapuskk/{id}', [KkController::class, 'hapusKk'])->name('hapus-kk');
-
-    //DETAIL KARTU KELUARGA
-    Route::get('/admin/gettabeldetailkk/{nokk}', [DetailKkController::class, 'getTabelDetailKk'])->name('get-tabel-detailkk');
-    Route::get('/admin/getalldetailkk', [DetailKkController::class, 'getAllDetailKk'])->name('get-all-detailkk');
-    Route::get('/admin/getdetailkk/{id}', [DetailKkController::class, 'getDetailKkById'])->name('get-detailkk-by-id');
-    Route::get('/admin/getdetailkkbykk/{nokk}', [DetailKkController::class, 'getDetailKkByNoKk'])->name('get-detailkk-by-nokk');
-    Route::any('/admin/tambahdetailkk', [DetailKkController::class, 'tambahDetailKk'])->name('tambah-detailkk');
-    Route::post('/admin/updatedetailkk', [DetailKkController::class, 'updateDetailKk'])->name('update-detailkk');
-    Route::get('/admin/hapusdetailkk/{id}', [DetailKkController::class, 'hapusDetailKk'])->name('hapus-detailkk');
-
-    // SURAT MASUK
-    Route::get('/admin/gettabelsuratmasuk', [SuratMasukController::class, 'getTabelSuratMasuk'])->name('get-tabel-suratmasuk');
-    Route::get('/admin/getallsuratmasuk', [SuratMasukController::class, 'getAllSuratMasuk'])->name('get-all-suratmasuk');
-    Route::get('/admin/getsuratmasuk/{id}', [SuratMasukController::class, 'getSuratMasukById'])->name('get-suratmasuk-by-id');
-    Route::any('/admin/tambahsuratmasuk', [SuratMasukController::class, 'tambahSuratMasuk'])->name('tambah-suratmasuk');
-    Route::post('/admin/updatesuratmasuk', [SuratMasukController::class, 'updateSuratMasuk'])->name('update-suratmasuk');
-    Route::get('/admin/hapussuratmasuk/{id}', [SuratMasukController::class, 'hapusSuratMasuk'])->name('hapus-suratmasuk');
-
-    // PERMOHONAN SURAT MASUK
-    Route::get('/admin/gettabelpermohonansurat', [PermohonanSuratController::class, 'getTabelPermohonanSurat'])->name('get-tabel-permohonansurat');
-    Route::get('/admin/gettabelriwayatpermohonansurat', [PermohonanSuratController::class, 'getTabelRiwayatPermohonanSurat'])->name('get-tabel-riwayat-permohonansurat');
-    Route::get('/admin/getallpermohonansurat', [PermohonanSuratController::class, 'getAllPermohonanSurat'])->name('get-all-permohonansurat');
-    Route::get('/admin/getpermohonansurat/{id}', [PermohonanSuratController::class, 'getPermohonanSuratById'])->name('get-permohonansurat-by-id');
-    Route::any('/admin/tambahpermohonansurat', [PermohonanSuratController::class, 'tambahPermohonanSurat'])->name('tambah-permohonansurat');
-    Route::post('/admin/updatepermohonansurat', [PermohonanSuratController::class, 'updatePermohonanSurat'])->name('update-permohonansurat');
-    Route::get('/admin/hapuspermohonansurat/{id}', [PermohonanSuratController::class, 'hapusPermohonanSurat'])->name('hapus-permohonansurat');
-    Route::get('/admin/terimapermohonansurat/{id}', [PermohonanSuratController::class, 'terimaPermohonanSurat'])->name('terima-permohonansurat');
-    Route::get('/admin/tolakpermohonansurat/{id}', [PermohonanSuratController::class, 'tolakPermohonanSurat'])->name('tolak-permohonansurat');
-
-
-
-    // PENGESAHAN / TTD
-    Route::get('/admin/datatabelpengesahan', [PengesahanController::class, 'getTabelPengesahan'])->name('tabel-pengesahan');
-    Route::get('/admin/dataallpengesahan', [PengesahanController::class, 'getAllPengesahan'])->name('get-all-pengesahan');
-    Route::get('/admin/datapengesahan/{id}', [PengesahanController::class, 'getPengesahan'])->name('get-pengesahan');
-    Route::any('/admin/insertpengesahan', [PengesahanController::class, 'insertPengesahan'])->name('insert-pengesahan');
-    Route::get('/admin/deletepengesahan/{id}', [PengesahanController::class, 'deletePengesahan'])->name('delete-pengesahan');
-    Route::any('/admin/updatepengesahan', [PengesahanController::class, 'updatePengesahan'])->name('update-pengesahan');
-
-    // SURAT KELUAR
-    Route::get('/admin/gettabelsuratkeluar', [SuratKeluarController::class, 'getTabelSuratKeluar'])->name('get-tabel-suratkeluar');
-    Route::get('/admin/gettabelsuratkeluarapprove', [SuratKeluarController::class, 'getTabelSuratKeluarApprove'])->name('get-tabel-suratkeluar-approve');
-    Route::get('/admin/getallsuratkeluar', [SuratKeluarController::class, 'getAllSuratKeluar'])->name('get-all-suratkeluar');
-    Route::get('/admin/getsuratkeluar/{id}', [SuratKeluarController::class, 'getSuratKeluarById'])->name('get-suratkeluar-by-id');
-    Route::any('/admin/tambahsuratkeluar', [SuratKeluarController::class, 'tambahSuratKeluar'])->name('tambah-suratkeluar');
-    Route::post('/admin/updatesuratkeluar', [SuratKeluarController::class, 'updateSuratKeluar'])->name('update-suratkeluar');
-    Route::get('/admin/hapussuratkeluar/{id}', [SuratKeluarController::class, 'hapusSuratKeluar'])->name('hapus-suratkeluar');
-
-    // FORMAT PENGESAHAN / KAKI SURAT
-    Route::get('/admin/datatabelformatpengesahan', [FormatPengesahanController::class, 'getTabelFormatPengesahan'])->name('tabel-formatpengesahan');
-    Route::get('/admin/dataallformatpengesahan', [FormatPengesahanController::class, 'getAllFormatPengesahan'])->name('get-all-formatpengesahan');
-    Route::get('/admin/dataformatpengesahan/{id}', [FormatPengesahanController::class, 'getFormatPengesahan'])->name('get-formatpengesahan');
-    Route::any('/admin/insertformatpengesahan', [FormatPengesahanController::class, 'insertFormatPengesahan'])->name('insert-formatpengesahan');
-    Route::get('/admin/deleteformatpengesahan/{id}', [FormatPengesahanController::class, 'deleteFormatPengesahan'])->name('delete-formatpengesahan');
-    Route::any('/admin/updateformatpengesahan', [FormatPengesahanController::class, 'updateFormatPengesahan'])->name('update-formatpengesahan');
-
-    // APPROVE SURAT KELUAR
-    Route::get('/admin/gettabelapprovesuratkeluar', [ApproveSuratKeluarController::class, 'getTabelApproveSuratKeluar'])->name('get-tabel-approve-suratkeluar');
-    Route::post('/admin/approvesuratkeluar', [ApproveSuratKeluarController::class, 'approveSuratKeluar'])->name('approve-suratkeluar');
-
-    // LIHAT SURAT PDF
-    Route::get('/admin/lihatsuratapprove/{id}', [SuratPdfController::class, 'lihatSuratApprove'])->name('get-lihat-surat-approve-pdf');
-    Route::get('/admin/lihatsuratkeluar/{id}', [SuratPdfController::class, 'lihatSuratKeluar'])->name('get-lihat-surat-keluar-pdf');
-
-
-});
+// });
 //ACCOUNT
 Route::get('/admin/datatabelaccount', [AccountController::class, 'getTabelAccount'])->name('tabel-account');
 Route::get('/admin/dataaccountall', [AccountController::class, 'getAllAccount'])->name('get-all-account');

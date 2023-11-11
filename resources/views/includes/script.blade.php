@@ -23,4 +23,12 @@ CKEDITOR.replace( 'summary-ckeditor' );
 <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.all.min.js"></script>
 <!-- <script src="//cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script> -->
 <!-- <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js" type="text/javascript"></script> -->
-
+<script src="{{url('/bundles/datatables/datatables.min.js')}}"></script>
+<script src="{{url('/bundles/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js')}}"></script>
+<script src="{{url('/bundles/datatables/export-tables/dataTables.buttons.min.js')}}"></script>
+<script src="{{url('/bundles/datatables/export-tables/buttons.flash.min.js')}}"></script>
+<script src="{{url('/bundles/datatables/export-tables/jszip.min.js')}}"></script>
+<script src="{{url('/bundles/datatables/export-tables/pdfmake.min.js')}}"></script>
+<script src="{{url('/bundles/datatables/export-tables/vfs_fonts.js')}}"></script>
+<script src="{{url('/bundles/datatables/export-tables/buttons.print.min.js')}}"></script>
+<script src="{{url('/js/page/datatables.js')}}"></script>

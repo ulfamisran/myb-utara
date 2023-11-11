@@ -14,7 +14,7 @@
 		<!-- meta character set -->
 		<meta charset="UTF-8">
 		<!-- Site Title -->
-		<title>Administrasi Desa Gura</title>
+		<title>MYB Untuk Utara</title>
 
 		<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
 			<!--
@@ -43,31 +43,30 @@
 						</div>
 						<div class="col-lg-6 col-sm-6 col-6 header-top-right">
 							<div class="header-social">
-								<a href="#"><i class="fa fa-facebook"></i></a>
-								<a href="#"><i class="fa fa-twitter"></i></a>
-								<a href="#"><i class="fa fa-dribbble"></i></a>
-								<a href="#"><i class="fa fa-behance"></i></a>
+								<!-- s -->
+								<!-- <a href="#"><i class="fa fa-dribbble"></i></a> -->
+								<!-- <a href="#"><i class="fa fa-behance"></i></a> -->
 							</div>
 						</div>
 					</div>
 					</div>
 				</div>
-				<div class="container main-menu">
+				<!-- <div class="container main-menu">
 					<div class="row align-items-center justify-content-between d-flex">
-						<div id="logo">
+						<div id="logo"> -->
 							<!-- <a href="index.html"><img src="landingpage/logo.png"  height="50" alt="" title="" /></a> -->
-							<b><a style="font-size:18px;" class="text-white" href="index.html"><img src="gambarlogo/logo_enrekang.png"  height="50" alt="" title="" /> Desa Buntu Mondong</a></b>
+							<!-- <b><a style="font-size:18px;" class="text-white" href="index.html"><img src="gambarlogo/logo-app1.png"  height="50" alt="" title="" /></a></b>
 						</div>
-						<nav id="nav-menu-container">
-							<ul class="nav-menu">
+						<nav id="nav-menu-container"> -->
+							<!-- <ul class="nav-menu">
 							<li><a href="index.html">Home</a></li>
 							<li><a href="about.html">Cek Surat</a></li>
 
 							<li><a href="contact.html">Contact</a></li>
-							</ul>
+							</ul> -->
 						</nav><!-- #nav-menu-container -->
-					</div>
-				</div>
+					<!-- </div> -->
+				<!-- </div> -->
 			</header><!-- #header -->
 
 			<!-- start banner Area -->
@@ -77,8 +76,11 @@
 					<div class="row fullscreen align-items-center justify-content-between">
 						<div class="col-lg-6 col-md-6 banner-left">
 						<br><br><br>
-							<h6 class="text-white">Sistem Permohonan Pembuatan Surat</h6>
-							<h1 class="text-white">PERSURATAN DESA BUNTU MONDONG</h1>
+                        <!-- <b><a style="font-size:18px;" class="text-white" href="index.html"></a></b> -->
+                            <img src="gambarlogo/logo-app1.png"  height="200" alt="" title="" />
+							<h2 class="text-white">Muhammad Yulianto Badwi</h2>
+							<i><h6 class="text-white">Bontoala - Sangkarrang - Tallo - Ujung Tanah - Wajo</h6></i>
+
 
 						</div>
 						<div class="col-lg-6 col-md-6 banner-right">

@@ -2,3 +2,20 @@
 /*# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY3VzdG9tLmNzcyIsInNvdXJjZXMiOlsiY3VzdG9tLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiJ9 */
 
 /*# sourceMappingURL=custom.css.map */
+.custom-excel-button {
+    background-color: #4CAF50; /* Warna latar belakang hijau */
+    color: #fff; /* Warna teks putih */
+    width: 150px; /* Menetapkan lebar tombol */
+    padding: 10px 0; /* Padding di atas dan bawah tombol tetap 10px */
+    border: none; /* Menghilangkan garis pinggiran tombol */
+    cursor: pointer; /* Tampilan kursor saat diarahkan ke tombol */
+}
+
+.custom-pdf-button {
+    background-color: #c00c0c; /* Warna latar belakang hijau */
+    color: #fff; /* Warna teks putih */
+    width: 150px; /* Menetapkan lebar tombol */
+    padding: 10px 0; /* Padding di atas dan bawah tombol tetap 10px */
+    border: none; /* Menghilangkan garis pinggiran tombol */
+    cursor: pointer; /* Tampilan kursor saat diarahkan ke tombol */
+}
